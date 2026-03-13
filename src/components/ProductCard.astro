@@ -1,0 +1,54 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  accentColor?: string;
+}
+
+const { name, description, accentColor = 'var(--color-golden)' } = Astro.props;
+---
+
+<div class="product-card" style={`--product-accent: ${accentColor};`}>
+  <img src="/logo-white.png" alt="Actimax" class="product-card__logo" />
+  <div class="product-card__info">
+    <strong class="product-card__name">{name}</strong>
+    <p class="product-card__desc">{description}</p>
+  </div>
+</div>
+
+<style>
+  .product-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: var(--color-warm-yellow);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--product-accent);
+    margin-top: var(--space-lg);
+  }
+
+  .product-card__logo {
+    flex-shrink: 0;
+    height: 18px;
+    width: auto;
+    padding: 0.35rem 0.5rem;
+    background: var(--color-navy);
+    border-radius: var(--radius-sm);
+    filter: brightness(0) invert(1);
+    box-sizing: content-box;
+  }
+
+  .product-card__name {
+    font-size: var(--text-base);
+    color: var(--color-navy);
+    display: block;
+  }
+
+  .product-card__desc {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.4;
+  }
+</style>

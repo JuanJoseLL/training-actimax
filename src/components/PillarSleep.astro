@@ -1,0 +1,470 @@
+---
+// Pillar 3: Sleep - includes the breathing exercise interactive island
+import Icon from './Icon.astro';
+---
+
+<section class="section pillar pillar--sleep" id="sueno">
+  <div class="section__inner">
+    <div class="pillar__header reveal">
+      <span class="pillar__number">3</span>
+      <div>
+        <h2 class="pillar__title">Sueño Reparador</h2>
+        <p class="pillar__subtitle">Descansar también es entrenar</p>
+      </div>
+    </div>
+
+    <p class="pillar__intro reveal">No hay adaptación sin descanso. No hay mejora sin sueño. El descanso es una parte activa del rendimiento.</p>
+
+    <ul class="sleep-tips reveal">
+      <li class="sleep-tip">
+        <span class="sleep-tip__icon"><Icon name="bed" size={22} /></span>
+        <div>
+          <strong>7-8 horas reales de sueño</strong>
+          <p>Es ahí donde el cuerpo asimila el entrenamiento, repara tejidos y restablece la energía.</p>
+        </div>
+      </li>
+      <li class="sleep-tip">
+        <span class="sleep-tip__icon"><Icon name="monitor-off" size={22} /></span>
+        <div>
+          <strong>Sin pantallas 30 min antes</strong>
+          <p>Reduce estímulos y evita pantallas al menos 30 minutos antes de dormir.</p>
+        </div>
+      </li>
+      <li class="sleep-tip">
+        <span class="sleep-tip__icon"><Icon name="wind" size={22} /></span>
+        <div>
+          <strong>Estiramiento suave</strong>
+          <p>Ayuda a liberar la tensión acumulada y prepara al cuerpo para descansar.</p>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Breathing Exercise Island -->
+    <div class="breathing-section reveal">
+      <div class="habit-badge">Mini hábito</div>
+      <h3 class="breathing-title">Rutina de respiración de 5 minutos</h3>
+      <p class="breathing-desc">Una respiración consciente ayuda a bajar el ritmo del sistema nervioso y facilita un descanso más profundo.</p>
+
+      <div class="breathing-container" id="breathing-container">
+        <div class="breathing-circle" id="breathing-circle">
+          <span class="breathing-label" id="breathing-label">Toca para comenzar</span>
+          <span class="breathing-timer" id="breathing-timer"></span>
+        </div>
+
+        <button class="breathing-btn" id="breathing-btn">Comenzar</button>
+
+        <div class="breathing-progress" id="breathing-progress">
+          <span>Ciclo <strong id="cycle-current">0</strong> de <strong>4</strong></span>
+          <div class="breathing-dots">
+            <span class="breathing-dot" data-cycle="1"></span>
+            <span class="breathing-dot" data-cycle="2"></span>
+            <span class="breathing-dot" data-cycle="3"></span>
+            <span class="breathing-dot" data-cycle="4"></span>
+          </div>
+        </div>
+
+        <div class="breathing-instructions">
+          <span>Inhala 4s (nariz)</span>
+          <span>Sostén 2s</span>
+          <span>Exhala 6s (boca)</span>
+        </div>
+      </div>
+    </div>
+
+    <blockquote class="pillar__quote reveal">
+      <p><strong>Dormir bien también es entrenar.</strong></p>
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .pillar--sleep {
+    background: var(--color-navy);
+    border-top: 3px solid var(--color-sleep);
+  }
+
+  .pillar--sleep .pillar__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .pillar--sleep .pillar__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-sleep);
+    color: white;
+    font-size: var(--text-lg);
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .pillar--sleep .pillar__title {
+    color: var(--color-surface);
+  }
+
+  .pillar--sleep .pillar__subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-sleep);
+    font-weight: 600;
+    margin: 0;
+    opacity: 0.9;
+  }
+
+  .pillar--sleep .pillar__intro {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .pillar--sleep .pillar__intro strong {
+    color: var(--color-surface);
+  }
+
+  /* Sleep tips */
+  .sleep-tips {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .sleep-tip {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sleep-tip__icon {
+    width: 22px;
+    height: 22px;
+    color: var(--color-sleep);
+    flex-shrink: 0;
+    line-height: 1.4;
+  }
+
+  .sleep-tip strong {
+    color: var(--color-surface);
+    font-size: var(--text-base);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .sleep-tip p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--text-sm);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* Breathing exercise */
+  .breathing-section {
+    padding: var(--space-2xl) var(--space-lg);
+    background: rgba(124, 77, 255, 0.1);
+    border: 1px solid rgba(124, 77, 255, 0.2);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .breathing-section .habit-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-sleep);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-md);
+  }
+
+  .breathing-title {
+    color: var(--color-surface);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .breathing-desc {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--text-sm);
+    max-width: 400px;
+    margin: 0 auto var(--space-xl);
+  }
+
+  .breathing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .breathing-circle {
+    width: min(220px, 55vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124, 77, 255, 0.2) 0%, rgba(124, 77, 255, 0.05) 70%);
+    border: 3px solid rgba(124, 77, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transform: scale(0.7);
+    transition: transform ease-in-out, border-color 0.5s, background 0.5s;
+    will-change: transform;
+  }
+
+  .breathing-circle[data-phase="inhale"] {
+    transition-duration: 4s;
+    transform: scale(1);
+    border-color: rgba(245, 197, 24, 0.6);
+    background: radial-gradient(circle, rgba(245, 197, 24, 0.15) 0%, rgba(124, 77, 255, 0.05) 70%);
+  }
+
+  .breathing-circle[data-phase="hold"] {
+    transition-duration: 2s;
+    transform: scale(1);
+    border-color: rgba(245, 197, 24, 0.8);
+  }
+
+  .breathing-circle[data-phase="exhale"] {
+    transition-duration: 6s;
+    transform: scale(0.7);
+    border-color: rgba(124, 77, 255, 0.3);
+    background: radial-gradient(circle, rgba(124, 77, 255, 0.2) 0%, rgba(124, 77, 255, 0.05) 70%);
+  }
+
+  .breathing-label {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-surface);
+  }
+
+  .breathing-timer {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.5);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .breathing-btn {
+    padding: 0.6rem 2rem;
+    background: var(--color-sleep);
+    color: white;
+    font-weight: 700;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-full);
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .breathing-btn:hover {
+    background: var(--color-navy-light);
+    transform: scale(1.03);
+  }
+
+  .breathing-btn.active {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .breathing-progress {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--text-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .breathing-dots {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .breathing-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.3s;
+  }
+
+  .breathing-dot.done {
+    background: var(--color-golden);
+  }
+
+  .breathing-instructions {
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: var(--text-xs);
+  }
+
+  /* Quote */
+  .pillar--sleep .pillar__quote {
+    border-left: 4px solid var(--color-sleep);
+    padding: var(--space-lg) var(--space-xl);
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .pillar--sleep .pillar__quote p {
+    font-size: var(--text-xl);
+    color: var(--color-surface);
+  }
+
+  .pillar--sleep .pillar__quote strong {
+    color: var(--color-golden);
+  }
+
+  @media (max-width: 480px) {
+    .pillar--sleep .pillar__header {
+      gap: var(--space-sm);
+    }
+
+    .pillar--sleep .pillar__number {
+      width: 40px;
+      height: 40px;
+      font-size: var(--text-base);
+    }
+
+    .sleep-tip {
+      padding: var(--space-md);
+      gap: var(--space-sm);
+    }
+
+    .breathing-section {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .breathing-circle {
+      width: min(180px, 50vw);
+    }
+
+    .breathing-label {
+      font-size: var(--text-base);
+    }
+
+    .breathing-instructions {
+      gap: var(--space-md);
+    }
+
+    .pillar--sleep .pillar__quote {
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .pillar--sleep .pillar__quote p {
+      font-size: var(--text-lg);
+    }
+  }
+</style>
+
+<script>
+  const circle = document.getElementById('breathing-circle');
+  const label = document.getElementById('breathing-label');
+  const timer = document.getElementById('breathing-timer');
+  const btn = document.getElementById('breathing-btn');
+  const currentSpan = document.getElementById('cycle-current');
+  const dots = document.querySelectorAll('.breathing-dot');
+
+  let running = false;
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+  const phases = [
+    { name: 'inhale', label: 'Inhala...', duration: 4000 },
+    { name: 'hold', label: 'Sostén...', duration: 2000 },
+    { name: 'exhale', label: 'Exhala...', duration: 6000 },
+  ];
+
+  function runCycle(cycleNum: number): Promise<void> {
+    return new Promise((resolve) => {
+      let phaseIndex = 0;
+
+      function nextPhase() {
+        if (!running || phaseIndex >= phases.length) {
+          resolve();
+          return;
+        }
+
+        const phase = phases[phaseIndex];
+        circle?.setAttribute('data-phase', phase.name);
+        if (label) label.textContent = phase.label;
+
+        // Countdown timer
+        let remaining = phase.duration / 1000;
+        if (timer) timer.textContent = `${remaining}s`;
+        const countInterval = setInterval(() => {
+          remaining--;
+          if (timer && remaining > 0) timer.textContent = `${remaining}s`;
+        }, 1000);
+
+        timeoutId = setTimeout(() => {
+          clearInterval(countInterval);
+          phaseIndex++;
+          nextPhase();
+        }, phase.duration);
+      }
+
+      if (currentSpan) currentSpan.textContent = String(cycleNum);
+      nextPhase();
+    });
+  }
+
+  async function startBreathing() {
+    running = true;
+    if (btn) {
+      btn.textContent = 'Detener';
+      btn.classList.add('active');
+    }
+
+    for (let i = 1; i <= 4; i++) {
+      if (!running) break;
+      await runCycle(i);
+      if (dots[i - 1]) dots[i - 1].classList.add('done');
+    }
+
+    stop();
+    if (label) label.textContent = 'Completado';
+    if (timer) timer.textContent = '';
+    setTimeout(() => {
+      if (label) label.textContent = 'Toca para repetir';
+    }, 2000);
+  }
+
+  function stop() {
+    running = false;
+    if (timeoutId) clearTimeout(timeoutId);
+    circle?.removeAttribute('data-phase');
+    if (btn) {
+      btn.textContent = 'Comenzar';
+      btn.classList.remove('active');
+    }
+  }
+
+  function reset() {
+    dots.forEach(d => d.classList.remove('done'));
+    if (currentSpan) currentSpan.textContent = '0';
+    if (timer) timer.textContent = '';
+  }
+
+  btn?.addEventListener('click', () => {
+    if (running) {
+      stop();
+      reset();
+      if (label) label.textContent = 'Toca para comenzar';
+    } else {
+      reset();
+      startBreathing();
+    }
+  });
+</script>

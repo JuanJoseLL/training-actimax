@@ -1,0 +1,340 @@
+---
+// Hero: Cover + 80/20 Performance Chart combined into one impactful opening
+---
+
+<section class="hero" id="hero">
+  <div class="hero__content">
+    <div class="hero__brand">
+      <img src="/logo-white.png" alt="Actimax" class="hero__logo" />
+    </div>
+    <h1 class="hero__title">
+      <span class="hero__title-line">El Entrenamiento</span>
+      <span class="hero__title-accent">Invisible</span>
+    </h1>
+    <p class="hero__tagline">La dimensión oculta del rendimiento</p>
+
+    <div class="hero__divider" aria-hidden="true"></div>
+
+    <div class="hero__chart" aria-label="80% del rendimiento es invisible, 20% es visible">
+      <div class="pie-chart">
+        <div class="pie-chart__center">
+          <span class="pie-chart__number">80<small>%</small></span>
+          <span class="pie-chart__label">invisible</span>
+        </div>
+      </div>
+      <div class="pie-chart__legend">
+        <div class="legend-item legend-item--invisible">
+          <span class="legend-dot legend-dot--golden"></span>
+          <span><strong>80%</strong> Lo que no se ve</span>
+        </div>
+        <div class="legend-item legend-item--visible">
+          <span class="legend-dot legend-dot--navy"></span>
+          <span><strong>20%</strong> El entrenamiento</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="hero__insight">Entrenar más no garantiza rendir mejor.<br/>La clave está en <strong>entrenar con energía.</strong></p>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span class="hero__scroll-text">Descubre más</span>
+    <svg class="hero__scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100dvh;
+    background: var(--color-navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl) var(--section-px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dot-grid background pattern */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    pointer-events: none;
+  }
+
+  /* Subtle radial glow behind chart */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(245, 197, 24, 0.08) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero__content {
+    max-width: var(--content-max);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__brand {
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 0.2s forwards;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero__logo {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    transition: opacity 0.3s;
+  }
+
+  .hero__logo:hover {
+    opacity: 1;
+  }
+
+  .hero__title {
+    color: var(--color-surface);
+    font-size: var(--text-4xl, clamp(2.8rem, 6vw, 4.5rem));
+    font-family: var(--font-display);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero__title-line {
+    display: block;
+    opacity: 0;
+    animation: slide-up 0.7s var(--ease-out) 0.4s forwards;
+  }
+
+  .hero__title-accent {
+    display: block;
+    color: var(--color-golden);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: slide-up 0.7s var(--ease-out) 0.6s forwards;
+  }
+
+  .hero__tagline {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-lg);
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 0.9s forwards;
+  }
+
+  /* Golden divider between tagline and chart */
+  .hero__divider {
+    width: 40px;
+    height: 3px;
+    background: var(--color-golden);
+    margin: 0 auto var(--space-lg);
+    border-radius: 2px;
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 1s forwards;
+  }
+
+  /* --- Pie Chart --- */
+  .hero__chart {
+    margin: 0 auto var(--space-2xl);
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 1.1s forwards;
+  }
+
+  .pie-chart {
+    width: min(220px, 55vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--color-golden) var(--pie-angle),
+      rgba(255, 255, 255, 0.12) var(--pie-angle)
+    );
+    margin: 0 auto var(--space-lg);
+    display: grid;
+    place-items: center;
+    animation: fill-pie 2s var(--ease-out) 1.5s forwards;
+    position: relative;
+  }
+
+  .pie-chart__center {
+    width: 65%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-navy);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .pie-chart__number {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--color-golden);
+    line-height: 1;
+  }
+
+  .pie-chart__number small {
+    font-size: 0.5em;
+    font-weight: 700;
+  }
+
+  .pie-chart__label {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+
+  @keyframes fill-pie {
+    to { --pie-angle: 288deg; }
+  }
+
+  .pie-chart__legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .legend-dot--golden { background: var(--color-golden); }
+  .legend-dot--navy { background: rgba(255, 255, 255, 0.2); }
+
+  /* --- Insight --- */
+  .hero__insight {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 2.5s forwards;
+  }
+
+  .hero__insight strong {
+    color: var(--color-surface);
+  }
+
+  /* --- Scroll indicator --- */
+  .hero__scroll {
+    position: absolute;
+    bottom: var(--space-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    color: rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    animation: fade-in 0.8s var(--ease-out) 3s forwards;
+    z-index: 2;
+  }
+
+  .hero__scroll-text {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+  }
+
+  .hero__scroll-arrow {
+    animation: bounce 2.5s ease-in-out infinite;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  @media (max-width: 480px) {
+    .hero {
+      padding: var(--space-xl) var(--space-md);
+      min-height: 100svh;
+    }
+
+    .hero__logo {
+      height: 22px;
+    }
+
+    .hero__title {
+      font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .hero__chart {
+      margin-bottom: var(--space-xl);
+    }
+
+    .pie-chart {
+      width: min(180px, 50vw);
+      margin-bottom: var(--space-md);
+    }
+
+    .pie-chart__number {
+      font-size: var(--text-lg);
+    }
+
+    .pie-chart__legend {
+      gap: var(--space-md);
+    }
+
+    .legend-item {
+      font-size: var(--text-xs);
+    }
+
+    .hero__insight {
+      font-size: var(--text-sm);
+      max-width: 320px;
+    }
+
+    .hero__scroll {
+      bottom: var(--space-md);
+    }
+  }
+</style>

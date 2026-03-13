@@ -1,0 +1,944 @@
+{
+  "meta": {
+    "title": "El Entrenamiento Invisible",
+    "subtitle": "Una filosofia Actimax para rendir mejor, todos los dias",
+    "tagline": "La dimension oculta del rendimiento",
+    "brand": "Actimax",
+    "language": "es",
+    "totalPages": 11,
+    "totalSections": 9,
+    "totalPillars": 5
+  },
+
+  "brandElements": {
+    "colors": {
+      "primary": "#1B2A4A",
+      "primaryLight": "#2C3E6B",
+      "accent": "#F5C518",
+      "accentLight": "#FFD84D",
+      "background": "#FFF8E1",
+      "backgroundDark": "#1B2A4A",
+      "surface": "#FFFFFF",
+      "textOnDark": "#FFFFFF",
+      "textOnLight": "#1B2A4A",
+      "textMuted": "#5A6A8A",
+      "success": "#4CAF50",
+      "pillarHydration": "#2196F3",
+      "pillarEnergy": "#FF9800",
+      "pillarSleep": "#7C4DFF",
+      "pillarMindset": "#E91E63",
+      "pillarNutrition": "#4CAF50"
+    },
+    "typography": {
+      "headingFont": "Bold, uppercase sport/condensed style",
+      "bodyFont": "Clean sans-serif for readability",
+      "quoteStyle": "Italic, larger size, accent color"
+    },
+    "toneOfVoice": {
+      "register": "Tu (informal, direct)",
+      "style": "Motivational but grounded, not hype",
+      "keywords": ["estrategia", "conciencia", "habitos", "intencion", "invisible"],
+      "pattern": "Short declarative sentences, rhetorical questions, power phrases"
+    },
+    "products": [
+      {
+        "id": "elite",
+        "name": "Elite Actimax",
+        "type": "Hydration drink",
+        "context": "During training hydration",
+        "pillar": 1,
+        "mentionedInSection": "pillar-hydration"
+      },
+      {
+        "id": "prerace",
+        "name": "Prerace Actimax",
+        "type": "Pre-workout carbs",
+        "context": "30 min before training, fast-absorbing carbs",
+        "pillar": 2,
+        "mentionedInSection": "pillar-energy"
+      },
+      {
+        "id": "gel",
+        "name": "Gel Actimax",
+        "type": "Energy gel",
+        "context": "1 gel every 30-40 min during training",
+        "pillar": 2,
+        "mentionedInSection": "pillar-energy"
+      },
+      {
+        "id": "recovery-pro",
+        "name": "Recovery Pro Actimax",
+        "type": "Post-workout recovery (protein + carbs)",
+        "context": "After training for recovery",
+        "pillar": 2,
+        "mentionedInSection": "pillar-energy"
+      },
+      {
+        "id": "protein-bar",
+        "name": "Protein Bar Actimax",
+        "type": "Snack bar",
+        "context": "Carry as daily snack for consistent nutrition",
+        "pillar": 5,
+        "mentionedInSection": "pillar-nutrition"
+      }
+    ]
+  },
+
+  "contentHierarchy": {
+    "level1_core": [
+      "The 80/20 split concept (invisible vs visible training)",
+      "The 5 pillars framework"
+    ],
+    "level2_pillars": [
+      "Each pillar with its before/during/after protocol",
+      "Mini habits as actionable takeaways per pillar"
+    ],
+    "level3_support": [
+      "Welcome/motivation framing",
+      "Product placements within context",
+      "Closing call to action"
+    ],
+    "narrativeArc": "Problem (training hard isn't enough) -> Framework (80/20 invisible training) -> System (5 pillars) -> Action (mini habits per pillar) -> Commitment (closing CTA)"
+  },
+
+  "sections": [
+    {
+      "id": "cover",
+      "order": 0,
+      "page": 1,
+      "type": "hero",
+      "role": "entry-point",
+      "title": "El Entrenamiento Invisible",
+      "subtitle": "Una filosofia Actimax para rendir mejor, todos los dias",
+      "tagline": "La dimension oculta del rendimiento",
+      "content": {},
+      "interactiveOpportunities": [
+        {
+          "type": "scroll-cta",
+          "description": "Animated scroll indicator inviting user to begin the journey",
+          "priority": "medium"
+        },
+        {
+          "type": "reveal-animation",
+          "description": "Title words reveal one by one, emphasizing 'invisible' with a glow or fade effect",
+          "priority": "high"
+        }
+      ]
+    },
+
+    {
+      "id": "welcome",
+      "order": 1,
+      "page": 2,
+      "type": "narrative",
+      "role": "context-setting",
+      "title": "Bienvenido al Equipo",
+      "subtitle": null,
+      "content": {
+        "mainMessage": "You train hard, you push beyond limits. But there's something you can't see that determines your results: nutrition, rest, and mindset.",
+        "keyPhrase": "No hay formulas magicas. Hay estrategia. Hay conciencia. Hay habitos.",
+        "threeWords": ["estrategia", "conciencia", "habitos"],
+        "tone": "Direct address, welcoming but challenging"
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "text-reveal",
+          "description": "The three key words (estrategia, conciencia, habitos) appear sequentially with emphasis animation",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "definition",
+      "order": 2,
+      "page": 3,
+      "type": "concept",
+      "role": "framework-introduction",
+      "title": "Que es el Entrenamiento Invisible?",
+      "subtitle": null,
+      "content": {
+        "definition": "Actions outside physical training that determine how you perform.",
+        "components": [
+          "Energy management",
+          "Recovery between sessions",
+          "Mental state"
+        ],
+        "coreInsight": "Entrenar mas no garantiza rendir mejor. La clave esta en entrenar con energia.",
+        "keyQuote": "El cuerpo ejecuta, si, pero lo hace guiado por la mente y limitado por la energia que lo sostiene.",
+        "conceptualModel": "Body executes -> Mind guides -> Energy sustains"
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "animated-diagram",
+          "description": "Concentric circles or flow diagram showing body/mind/energy relationship. User taps each layer to reveal description.",
+          "priority": "high"
+        }
+      ]
+    },
+
+    {
+      "id": "performance-split",
+      "order": 3,
+      "page": 4,
+      "type": "data-visualization",
+      "role": "framework-core",
+      "title": "La Division Real del Rendimiento",
+      "subtitle": null,
+      "content": {
+        "chart": {
+          "type": "pie-chart-or-donut",
+          "segments": [
+            {
+              "label": "Invisible",
+              "percentage": 80,
+              "items": [
+                "Nutricion",
+                "Hidratacion",
+                "Sueno",
+                "Mentalidad",
+                "Estado emocional",
+                "Intencion",
+                "Claridad",
+                "Creencias",
+                "Coherencia"
+              ]
+            },
+            {
+              "label": "Visible",
+              "percentage": 20,
+              "items": [
+                "Tecnica",
+                "Fuerza",
+                "Kilometros",
+                "Intensidad"
+              ]
+            }
+          ]
+        },
+        "closingLine": "Esto no es algo que simplemente aparece, se entrena."
+      },
+      "dataPoints": {
+        "invisiblePercentage": 80,
+        "visiblePercentage": 20,
+        "invisibleItemCount": 9,
+        "visibleItemCount": 4
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "animated-chart",
+          "description": "Donut chart that animates from 0% to 80/20 split on scroll. Each segment is tappable to reveal its sub-items.",
+          "priority": "critical"
+        },
+        {
+          "type": "toggle-reveal",
+          "description": "User can toggle between 'visible' and 'invisible' items, items fly in/out of chart segments",
+          "priority": "high"
+        }
+      ]
+    },
+
+    {
+      "id": "pillars-overview",
+      "order": 4,
+      "page": 5,
+      "type": "navigation-hub",
+      "role": "system-overview",
+      "title": "Los 5 Pilares",
+      "subtitle": null,
+      "content": {
+        "pillars": [
+          {
+            "number": 1,
+            "name": "Hidratacion inteligente",
+            "nameEn": "Smart Hydration",
+            "icon": "water-drop",
+            "color": "pillarHydration",
+            "linkTo": "pillar-hydration"
+          },
+          {
+            "number": 2,
+            "name": "Energia estrategica",
+            "nameEn": "Strategic Energy",
+            "icon": "lightning-bolt",
+            "color": "pillarEnergy",
+            "linkTo": "pillar-energy"
+          },
+          {
+            "number": 3,
+            "name": "Sueno reparador",
+            "nameEn": "Restorative Sleep",
+            "icon": "moon",
+            "color": "pillarSleep",
+            "linkTo": "pillar-sleep"
+          },
+          {
+            "number": 4,
+            "name": "Mentalidad de atleta",
+            "nameEn": "Athlete Mindset",
+            "icon": "brain",
+            "color": "pillarMindset",
+            "linkTo": "pillar-mindset"
+          },
+          {
+            "number": 5,
+            "name": "Nutricion diaria que sostiene tu cuerpo",
+            "nameShort": "Nutricion diaria",
+            "nameEn": "Daily Nutrition",
+            "icon": "apple",
+            "color": "pillarNutrition",
+            "linkTo": "pillar-nutrition"
+          }
+        ],
+        "closingLine": "No necesitas hacerlo perfecto. Necesitas hacerlo con intencion."
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "pillar-selector",
+          "description": "5 pillar cards arranged as selectable tiles. Each card has an icon, number, name. Tap to navigate to that pillar's detail section. Could animate as stacking blocks.",
+          "priority": "critical"
+        },
+        {
+          "type": "progress-tracker",
+          "description": "As user explores each pillar, a progress indicator fills up (1/5, 2/5, etc.) encouraging them to complete all 5",
+          "priority": "high"
+        }
+      ]
+    },
+
+    {
+      "id": "pillar-hydration",
+      "order": 5,
+      "page": 6,
+      "type": "pillar-detail",
+      "role": "actionable-content",
+      "pillarNumber": 1,
+      "title": "Hidratacion Inteligente",
+      "subtitle": "La base silenciosa del rendimiento",
+      "icon": "water-drop",
+      "color": "pillarHydration",
+      "content": {
+        "timeline": {
+          "before": {
+            "label": "Antes",
+            "instruction": "2-3 vasos de agua 2 horas antes del entrenamiento",
+            "dataPoints": {
+              "quantity": "2-3 vasos",
+              "timing": "2 horas antes"
+            }
+          },
+          "during": {
+            "label": "Durante",
+            "instruction": "Agua + electrolitos + carbohidratos segun necesidad",
+            "product": {
+              "name": "Elite Actimax",
+              "type": "Hydration drink"
+            }
+          },
+          "after": {
+            "label": "Despues",
+            "instruction": "Rehidratar hasta que la orina sea clara",
+            "indicator": "Urine color = clear"
+          }
+        },
+        "miniHabit": {
+          "label": "Mini habito",
+          "instruction": "Lleva siempre tu termo. 500ml por hora de actividad.",
+          "dataPoints": {
+            "rate": "500ml/hora",
+            "tool": "Termo personal"
+          }
+        }
+      },
+      "dataPoints": {
+        "waterBefore": "2-3 glasses",
+        "timingBefore": "2 hours before",
+        "ratePerHour": "500ml",
+        "urineGoal": "clear"
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "before-during-after-timeline",
+          "description": "Horizontal scrollable timeline with 3 phases. Each phase card expands on tap to show detail and product recommendation.",
+          "priority": "critical"
+        },
+        {
+          "type": "hydration-calculator",
+          "description": "Simple calculator: input training duration -> outputs total ml needed (duration x 500ml). Shows how many bottles of Elite Actimax that equals.",
+          "priority": "high"
+        },
+        {
+          "type": "mini-habit-checkbox",
+          "description": "Tappable checkbox for 'I have my thermos today' micro-commitment",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "pillar-energy",
+      "order": 6,
+      "page": 7,
+      "type": "pillar-detail",
+      "role": "actionable-content",
+      "pillarNumber": 2,
+      "title": "Energia Estrategica",
+      "subtitle": "Carbohidratos simples y complejos",
+      "icon": "lightning-bolt",
+      "color": "pillarEnergy",
+      "content": {
+        "timeline": {
+          "before": {
+            "label": "Antes",
+            "instruction": "Carbohidratos de absorcion rapida 30 minutos antes",
+            "product": {
+              "name": "Prerace Actimax",
+              "type": "Pre-workout carbs"
+            },
+            "dataPoints": {
+              "type": "Fast-absorbing carbs",
+              "timing": "30 minutos antes"
+            }
+          },
+          "during": {
+            "label": "Durante",
+            "instruction": "Despues de 40 minutos la energia baja. 1 gel cada 30-40 minutos.",
+            "product": {
+              "name": "Gel Actimax",
+              "type": "Energy gel"
+            },
+            "dataPoints": {
+              "energyDropAt": "40 minutos",
+              "gelFrequency": "1 gel / 30-40 min"
+            }
+          },
+          "after": {
+            "label": "Despues",
+            "instruction": "Proteina + carbohidratos para recuperacion",
+            "product": {
+              "name": "Recovery Pro Actimax",
+              "type": "Post-workout recovery"
+            }
+          }
+        },
+        "miniHabit": {
+          "label": "Mini habito",
+          "instruction": "Planifica tu duracion. 1 gel cada 30-40 min. 500-600ml de bebida por hora.",
+          "dataPoints": {
+            "gelRate": "1 gel / 30-40 min",
+            "drinkRate": "500-600ml/hora"
+          }
+        }
+      },
+      "dataPoints": {
+        "preWorkoutTiming": "30 min before",
+        "energyDropPoint": "40 min into session",
+        "gelFrequency": "every 30-40 min",
+        "drinkRatePerHour": "500-600ml",
+        "productsCount": 3
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "before-during-after-timeline",
+          "description": "Same timeline pattern as hydration, with energy-themed colors. Each phase shows the product and timing.",
+          "priority": "critical"
+        },
+        {
+          "type": "energy-planner",
+          "description": "Interactive planner: input training duration -> outputs how many gels needed, when to take each one, and total drink volume. Example: 2hr session = 3 gels at min 40, 70, 100 + 1-1.2L drink.",
+          "priority": "high"
+        },
+        {
+          "type": "energy-drop-visualization",
+          "description": "Animated graph showing energy curve: flat for 40 min then dropping, with gel intake points restoring the curve. Visualizes why gels matter.",
+          "priority": "medium"
+        },
+        {
+          "type": "mini-habit-checkbox",
+          "description": "Tappable checkbox for planning checklist: 'Pre-workout ready', 'Gels packed', 'Recovery planned'",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "pillar-sleep",
+      "order": 7,
+      "page": 8,
+      "type": "pillar-detail",
+      "role": "actionable-content",
+      "pillarNumber": 3,
+      "title": "Sueno Reparador",
+      "subtitle": "Descansar tambien es entrenar",
+      "icon": "moon",
+      "color": "pillarSleep",
+      "content": {
+        "recommendations": [
+          {
+            "instruction": "7-8 horas de sueno",
+            "dataPoint": "7-8 hours"
+          },
+          {
+            "instruction": "Reduce pantallas 30 minutos antes de dormir",
+            "dataPoint": "30 min screen-free before bed"
+          },
+          {
+            "instruction": "Estiramiento suave antes de dormir",
+            "dataPoint": null
+          }
+        ],
+        "breathingExercise": {
+          "label": "Rutina de respiracion de 5 minutos",
+          "duration": "5 minutos",
+          "steps": [
+            {
+              "phase": "inhale",
+              "method": "nariz",
+              "methodEn": "nose",
+              "duration": 4,
+              "unit": "seconds"
+            },
+            {
+              "phase": "hold",
+              "method": "sostenido",
+              "methodEn": "hold",
+              "duration": 2,
+              "unit": "seconds"
+            },
+            {
+              "phase": "exhale",
+              "method": "boca",
+              "methodEn": "mouth",
+              "duration": 6,
+              "unit": "seconds"
+            }
+          ],
+          "totalCycleTime": 12,
+          "cycles": 4,
+          "totalExerciseTime": 48,
+          "approximateDuration": "~1 minute for 4 cycles, repeat sets to fill 5 min"
+        },
+        "miniHabit": {
+          "label": "Mini habito",
+          "instruction": "Rutina de respiracion de 5 minutos antes de dormir",
+          "dataPoints": {
+            "duration": "5 minutos",
+            "timing": "Before bed"
+          }
+        },
+        "keyPhrase": "Dormir bien tambien es entrenar"
+      },
+      "dataPoints": {
+        "sleepHours": "7-8",
+        "screenFreeMinutes": 30,
+        "breathingInhale": "4s",
+        "breathingHold": "2s",
+        "breathingExhale": "6s",
+        "breathingCycles": 4,
+        "breathingTotalCycle": "12s"
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "breathing-exercise-timer",
+          "description": "FLAGSHIP INTERACTIVE: Animated breathing guide. Circle expands (inhale 4s) -> pauses (hold 2s) -> contracts (exhale 6s). Visual + optional haptic. Counts 4 cycles. Color shifts from active to calm. Start/stop button. Progress indicator showing which cycle you're on.",
+          "priority": "critical",
+          "technicalNotes": "Use CSS animations or requestAnimationFrame. Total cycle = 12s. 4 cycles = 48s. Can repeat to fill 5 min (~25 cycles total)."
+        },
+        {
+          "type": "sleep-checklist",
+          "description": "Evening routine checklist: '7-8h planned', 'Screens off 30min before', 'Gentle stretching done', 'Breathing routine done'. Tappable checkboxes.",
+          "priority": "high"
+        },
+        {
+          "type": "bedtime-calculator",
+          "description": "Input wake-up time -> outputs ideal bedtime (subtract 7.5h or 8h). Simple but useful.",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "pillar-mindset",
+      "order": 8,
+      "page": 9,
+      "type": "pillar-detail",
+      "role": "actionable-content",
+      "pillarNumber": 4,
+      "title": "Mentalidad de Atleta",
+      "subtitle": "Tu mente es tu mayor aliada",
+      "icon": "brain",
+      "color": "pillarMindset",
+      "content": {
+        "phases": {
+          "beforeTraining": {
+            "label": "Antes del entrenamiento",
+            "actions": [
+              "Visualiza la sesion",
+              "Define una intencion clara"
+            ]
+          },
+          "duringEffort": {
+            "label": "Durante el esfuerzo",
+            "instruction": "Reduce el dialogo interno. Usa palabras clave:",
+            "keywords": ["Respira", "Fluye", "Sosten el ritmo"]
+          }
+        },
+        "powerPhrases": {
+          "label": "Frases de poder",
+          "examples": [
+            "Hoy entreno fluido",
+            "Mi cuerpo es fuerte y resistente",
+            "Tengo energia",
+            "Confio en mi"
+          ],
+          "rules": [
+            "Primera persona",
+            "Tiempo presente",
+            "En positivo"
+          ],
+          "rulesEn": [
+            "First person",
+            "Present tense",
+            "Positive framing"
+          ]
+        },
+        "miniHabit": {
+          "label": "Mini habito",
+          "instruction": "Crea tu frase de poder. Primera persona, tiempo presente, en positivo.",
+          "hasUserInput": true,
+          "inputPlaceholder": "Escribe tu frase de poder aqui..."
+        }
+      },
+      "dataPoints": {
+        "examplePhrasesCount": 4,
+        "effortKeywordsCount": 3,
+        "phraseRules": 3
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "power-phrase-builder",
+          "description": "FLAGSHIP INTERACTIVE: User creates their own power phrase. Text input field with the 3 rules displayed. Example phrases shown as inspiration cards that can be swiped. Once written, the phrase is displayed in a 'medal' or 'banner' style card that can be saved/screenshotted. Validation hints: checks for first person ('Yo/Mi/Tengo'), present tense, no negative words.",
+          "priority": "critical",
+          "technicalNotes": "Store in localStorage for persistence. Could offer sharing functionality."
+        },
+        {
+          "type": "pre-training-visualization-prompt",
+          "description": "Guided prompt sequence: 'Close your eyes. Visualize your session. What will you accomplish? Set your intention.' Step-by-step with timed transitions.",
+          "priority": "medium"
+        },
+        {
+          "type": "effort-keywords-display",
+          "description": "During-effort keywords (Respira, Fluye, Sosten el ritmo) displayed as large, bold, swipeable cards. Minimalist focus mode.",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "pillar-nutrition",
+      "order": 9,
+      "page": 10,
+      "type": "pillar-detail",
+      "role": "actionable-content",
+      "pillarNumber": 5,
+      "title": "Nutricion Diaria",
+      "subtitle": "Lo que haces cada dia tambien entrena",
+      "icon": "apple",
+      "color": "pillarNutrition",
+      "content": {
+        "guidelines": [
+          {
+            "instruction": "Come cada 3-4 horas",
+            "dataPoint": "every 3-4 hours"
+          },
+          {
+            "instruction": "Incluye siempre proteina + carbohidratos de calidad",
+            "dataPoint": "protein + quality carbs always"
+          },
+          {
+            "instruction": "Reduce ultraprocesados en dias de carga",
+            "dataPoint": "reduce ultra-processed on heavy days"
+          },
+          {
+            "instruction": "Ten opciones practicas listas",
+            "dataPoint": "practical options ready"
+          }
+        ],
+        "miniHabit": {
+          "label": "Mini habito",
+          "instruction": "Lleva siempre un snack contigo.",
+          "product": {
+            "name": "Protein Bar Actimax",
+            "type": "Snack bar"
+          }
+        }
+      },
+      "dataPoints": {
+        "mealFrequency": "every 3-4 hours",
+        "macroFocus": "protein + quality carbs",
+        "guidelinesCount": 4
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "nutrition-checklist",
+          "description": "Daily nutrition checklist with the 4 guidelines as tappable items. Can be reset daily.",
+          "priority": "high"
+        },
+        {
+          "type": "meal-timer-reminder",
+          "description": "Visual indicator: 'Time since last meal' concept. Not a real timer, but an illustration showing 3-4 hour meal spacing across a day timeline (7am, 10am, 1pm, 4pm, 7pm).",
+          "priority": "medium"
+        },
+        {
+          "type": "mini-habit-checkbox",
+          "description": "Tappable checkbox: 'Do I have my snack today?'",
+          "priority": "medium"
+        }
+      ]
+    },
+
+    {
+      "id": "closing",
+      "order": 10,
+      "page": 11,
+      "type": "call-to-action",
+      "role": "commitment",
+      "title": "Estas dispuesto a mejorar tu rendimiento fisico?",
+      "subtitle": null,
+      "content": {
+        "mainMessage": "El rendimiento se construye en lo que repites cuando nadie te ve.",
+        "recap": [
+          "Hidratacion",
+          "Energia",
+          "Descanso",
+          "Dialogo interno",
+          "Nutricion diaria"
+        ],
+        "closingPhrase": "Entrena con estrategia. Entrena con Actimax.",
+        "callToAction": "commitment-question"
+      },
+      "interactiveOpportunities": [
+        {
+          "type": "commitment-pledge",
+          "description": "Final CTA: A large 'Estoy listo/lista' button or swipe-to-commit gesture. Once activated, shows a personalized summary: their power phrase (from pillar 4), the 5 mini habits as a saved checklist, and the Actimax branding.",
+          "priority": "critical"
+        },
+        {
+          "type": "pillar-summary-cards",
+          "description": "Compact summary of all 5 mini habits in one view, each as a small card with icon and one-line instruction. Serves as a 'cheat sheet' the user can revisit.",
+          "priority": "high"
+        },
+        {
+          "type": "share-functionality",
+          "description": "Option to share their commitment or power phrase via social/messaging. Brand awareness play.",
+          "priority": "low"
+        }
+      ]
+    }
+  ],
+
+  "interactiveSummary": {
+    "flagshipFeatures": [
+      {
+        "name": "80/20 Performance Chart",
+        "section": "performance-split",
+        "complexity": "medium",
+        "description": "Animated donut chart showing invisible vs visible training split. Tappable segments reveal items.",
+        "techStack": "SVG + CSS animations or lightweight chart library"
+      },
+      {
+        "name": "Breathing Exercise Timer",
+        "section": "pillar-sleep",
+        "complexity": "medium",
+        "description": "Guided 4-2-6 breathing animation with expanding/contracting circle. 4 cycles. Visual + calming colors.",
+        "techStack": "CSS animations or requestAnimationFrame, optional Web Audio API for gentle tone"
+      },
+      {
+        "name": "Power Phrase Builder",
+        "section": "pillar-mindset",
+        "complexity": "medium",
+        "description": "Text input with rules, example carousel, styled output card. localStorage persistence.",
+        "techStack": "Vanilla JS or lightweight framework component, localStorage"
+      },
+      {
+        "name": "Energy Planner Calculator",
+        "section": "pillar-energy",
+        "complexity": "low",
+        "description": "Input duration -> output gel count, timing, drink volume. Simple math with styled output.",
+        "techStack": "Vanilla JS, simple form"
+      }
+    ],
+    "recurringPatterns": [
+      {
+        "name": "Before/During/After Timeline",
+        "usedIn": ["pillar-hydration", "pillar-energy"],
+        "description": "Horizontal 3-phase timeline component. Reusable across pillars.",
+        "isReusableComponent": true
+      },
+      {
+        "name": "Mini Habit Checkbox",
+        "usedIn": ["pillar-hydration", "pillar-energy", "pillar-sleep", "pillar-nutrition", "closing"],
+        "description": "Single tappable checkbox with habit text. Can persist state in localStorage.",
+        "isReusableComponent": true
+      },
+      {
+        "name": "Product Mention Card",
+        "usedIn": ["pillar-hydration", "pillar-energy", "pillar-nutrition"],
+        "description": "Small branded card showing Actimax product name, type, and context. Could link to product page.",
+        "isReusableComponent": true
+      },
+      {
+        "name": "Key Quote Block",
+        "usedIn": ["welcome", "definition", "performance-split", "pillar-sleep"],
+        "description": "Styled blockquote for motivational phrases. Italic, accent color, larger text.",
+        "isReusableComponent": true
+      }
+    ],
+    "totalInteractiveElements": 20,
+    "criticalPriority": 5,
+    "highPriority": 7,
+    "mediumPriority": 7,
+    "lowPriority": 1
+  },
+
+  "appStructure": {
+    "recommendedFormat": "Single-page scrollable app with section-based navigation",
+    "navigation": {
+      "type": "Sticky top bar with pillar dots/icons + scroll-based section highlighting",
+      "sections": ["cover", "welcome", "definition", "performance-split", "pillars-overview", "pillar-hydration", "pillar-energy", "pillar-sleep", "pillar-mindset", "pillar-nutrition", "closing"],
+      "quickJump": "Pillar selector in overview acts as secondary nav"
+    },
+    "responsiveness": "Mobile-first design, content is inherently vertical/scrollable",
+    "estimatedSections": 11,
+    "persistentState": {
+      "powerPhrase": "localStorage - user's custom power phrase",
+      "miniHabitsChecked": "localStorage - which habits user has committed to",
+      "visitedPillars": "localStorage - progress tracking for 5 pillars"
+    }
+  },
+
+  "allDataPoints": {
+    "hydration": {
+      "waterBeforeTraining": "2-3 glasses",
+      "timingBeforeTraining": "2 hours",
+      "ratePerHourActivity": "500ml",
+      "postTrainingGoal": "clear urine"
+    },
+    "energy": {
+      "preWorkoutTiming": "30 minutes before",
+      "energyDropPoint": "after 40 minutes",
+      "gelFrequency": "1 every 30-40 minutes",
+      "drinkRatePerHour": "500-600ml",
+      "postWorkout": "protein + carbs"
+    },
+    "sleep": {
+      "targetHours": "7-8",
+      "screenFreeBuffer": "30 minutes",
+      "breathingInhale": "4 seconds (nose)",
+      "breathingHold": "2 seconds",
+      "breathingExhale": "6 seconds (mouth)",
+      "breathingCycles": 4,
+      "breathingRoutineDuration": "5 minutes"
+    },
+    "mindset": {
+      "phraseRules": ["first person", "present tense", "positive"],
+      "effortKeywords": ["Respira", "Fluye", "Sosten el ritmo"],
+      "examplePhrases": [
+        "Hoy entreno fluido",
+        "Mi cuerpo es fuerte y resistente",
+        "Tengo energia",
+        "Confio en mi"
+      ]
+    },
+    "nutrition": {
+      "mealFrequency": "every 3-4 hours",
+      "macroFocus": "protein + quality carbs",
+      "avoidOnHeavyDays": "ultra-processed foods"
+    },
+    "overallSplit": {
+      "invisible": "80%",
+      "visible": "20%"
+    }
+  },
+
+  "allQuotes": [
+    {
+      "text": "No hay formulas magicas. Hay estrategia. Hay conciencia. Hay habitos.",
+      "section": "welcome",
+      "role": "hook"
+    },
+    {
+      "text": "Entrenar mas no garantiza rendir mejor. La clave esta en entrenar con energia.",
+      "section": "definition",
+      "role": "core-insight"
+    },
+    {
+      "text": "El cuerpo ejecuta, si, pero lo hace guiado por la mente y limitado por la energia que lo sostiene.",
+      "section": "definition",
+      "role": "key-quote"
+    },
+    {
+      "text": "Esto no es algo que simplemente aparece, se entrena.",
+      "section": "performance-split",
+      "role": "reinforcement"
+    },
+    {
+      "text": "No necesitas hacerlo perfecto. Necesitas hacerlo con intencion.",
+      "section": "pillars-overview",
+      "role": "encouragement"
+    },
+    {
+      "text": "Dormir bien tambien es entrenar.",
+      "section": "pillar-sleep",
+      "role": "reframe"
+    },
+    {
+      "text": "El rendimiento se construye en lo que repites cuando nadie te ve.",
+      "section": "closing",
+      "role": "closing-statement"
+    },
+    {
+      "text": "Entrena con estrategia. Entrena con Actimax.",
+      "section": "closing",
+      "role": "brand-tagline"
+    }
+  ],
+
+  "miniHabitsSummary": [
+    {
+      "pillar": 1,
+      "pillarName": "Hidratacion",
+      "habit": "Lleva siempre tu termo. 500ml por hora de actividad.",
+      "shortForm": "Carry your thermos",
+      "icon": "water-drop"
+    },
+    {
+      "pillar": 2,
+      "pillarName": "Energia",
+      "habit": "Planifica tu duracion. 1 gel cada 30-40 min. 500-600ml de bebida por hora.",
+      "shortForm": "Plan your fueling",
+      "icon": "lightning-bolt"
+    },
+    {
+      "pillar": 3,
+      "pillarName": "Sueno",
+      "habit": "Rutina de respiracion de 5 minutos antes de dormir.",
+      "shortForm": "5-min breathing before bed",
+      "icon": "moon"
+    },
+    {
+      "pillar": 4,
+      "pillarName": "Mentalidad",
+      "habit": "Crea tu frase de poder. Primera persona, tiempo presente, en positivo.",
+      "shortForm": "Create your power phrase",
+      "icon": "brain"
+    },
+    {
+      "pillar": 5,
+      "pillarName": "Nutricion",
+      "habit": "Lleva siempre un snack contigo.",
+      "shortForm": "Always carry a snack",
+      "icon": "apple"
+    }
+  ]
+}

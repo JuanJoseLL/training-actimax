@@ -1,0 +1,379 @@
+---
+// Pillar 4: Athlete Mindset - includes the power phrase builder
+const examplePhrases = [
+  'Hoy entreno fluido',
+  'Mi cuerpo es fuerte y resistente',
+  'Tengo energía',
+  'Confío en mí',
+];
+
+const effortKeywords = ['Respira', 'Fluye', 'Sostén el ritmo'];
+---
+
+<section class="section pillar pillar--mindset" id="mentalidad">
+  <div class="section__inner">
+    <div class="pillar__header reveal">
+      <span class="pillar__number">4</span>
+      <div>
+        <h2 class="pillar__title">Mentalidad de Atleta</h2>
+        <p class="pillar__subtitle">Tu mente es tu mayor aliada</p>
+      </div>
+    </div>
+
+    <p class="pillar__intro reveal">Antes de entrenar, la mente ya está marcando el tono de la sesión. Lo que piensas antes de empezar influye en cómo percibes el esfuerzo y cómo sostienes el ritmo.</p>
+
+    <!-- Before training -->
+    <div class="mindset-block reveal">
+      <h3 class="mindset-block__title">Antes de entrenar</h3>
+      <p>Visualiza tu sesión y define una <strong>intención clara.</strong> Una sola idea, simple y directa:</p>
+      <div class="phrase-examples">
+        {examplePhrases.map((phrase) => (
+          <span class="phrase-chip">&ldquo;{phrase}&rdquo;</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- During effort -->
+    <div class="mindset-block reveal">
+      <h3 class="mindset-block__title">Durante el esfuerzo</h3>
+      <p>Reduce el diálogo interno a lo esencial. Menos palabras, más presencia:</p>
+      <div class="effort-keywords">
+        {effortKeywords.map((word) => (
+          <span class="effort-keyword">{word}</span>
+        ))}
+      </div>
+      <p class="mindset-insight">La mente no necesita discursos largos, necesita <strong>dirección.</strong></p>
+    </div>
+
+    <!-- Phrase Builder -->
+    <div class="phrase-builder reveal">
+      <div class="habit-badge">Mini hábito</div>
+      <h3 class="phrase-builder__title">Tu frase de poder</h3>
+      <p class="phrase-builder__rules">Debe ser: en <strong>primera persona</strong>, en <strong>tiempo presente</strong>, en <strong>positivo</strong>.</p>
+
+      <div class="phrase-builder__input-wrap">
+        <label for="phrase-input" class="sr-only">Escribe tu frase de poder</label>
+        <input
+          type="text"
+          id="phrase-input"
+          class="phrase-builder__input"
+          placeholder="Escribe tu frase de poder..."
+          maxlength="80"
+          autocomplete="off"
+        />
+      </div>
+
+      <div class="phrase-builder__card" id="phrase-card">
+        <span class="phrase-builder__card-label">Mi frase de poder</span>
+        <p class="phrase-builder__card-text" id="phrase-preview">Tu frase aparecerá aquí</p>
+      </div>
+    </div>
+
+    <blockquote class="pillar__quote reveal">
+      <p>Entrenar la mente es aprender a <strong>estar contigo mismo</strong> cuando el esfuerzo aparece.</p>
+    </blockquote>
+  </div>
+</section>
+
+<style>
+  .pillar--mindset {
+    background: var(--color-surface);
+    border-top: 3px solid var(--color-mindset);
+  }
+
+  .pillar--mindset .pillar__header {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .pillar--mindset .pillar__number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-mindset);
+    color: white;
+    font-size: var(--text-lg);
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .pillar--mindset .pillar__title {
+    font-size: var(--text-xl);
+    margin-bottom: 0.15rem;
+  }
+
+  .pillar--mindset .pillar__subtitle {
+    font-size: var(--text-sm);
+    color: var(--color-mindset);
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .pillar--mindset .pillar__intro {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* Mindset blocks */
+  .mindset-block {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .mindset-block__title {
+    font-size: var(--text-lg);
+    color: var(--color-mindset);
+    margin-bottom: var(--space-sm);
+  }
+
+  .mindset-block p {
+    margin-bottom: var(--space-md);
+  }
+
+  .phrase-examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .phrase-chip {
+    padding: 0.4rem 0.9rem;
+    background: var(--color-mindset-light);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-mindset);
+    font-style: italic;
+    cursor: pointer;
+  }
+
+  .phrase-chip:hover {
+    background: var(--color-mindset);
+    color: white;
+    transition: all 0.2s;
+  }
+
+  .effort-keywords {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-md);
+  }
+
+  .effort-keyword {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--color-navy);
+    letter-spacing: -0.01em;
+  }
+
+  .mindset-insight {
+    font-style: italic;
+    color: var(--color-muted);
+  }
+
+  /* Phrase builder */
+  .phrase-builder {
+    padding: var(--space-xl);
+    background: var(--color-mindset-light);
+    border-radius: var(--radius-xl);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .phrase-builder .habit-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--color-mindset);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-md);
+  }
+
+  .phrase-builder__title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .phrase-builder__rules {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    margin-bottom: var(--space-lg);
+  }
+
+  .phrase-builder__rules strong {
+    color: var(--color-mindset);
+  }
+
+  .phrase-builder__input-wrap {
+    max-width: 480px;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .phrase-builder__input {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--text-lg);
+    border: 2px solid var(--color-mindset);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-dark-text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+
+  .phrase-builder__input:focus {
+    border-color: var(--color-mindset);
+    box-shadow: 0 0 0 4px rgba(233, 30, 99, 0.15);
+  }
+
+  .phrase-builder__input::placeholder {
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
+  .phrase-builder__card {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-xl);
+    background: linear-gradient(135deg, var(--color-navy), var(--color-navy-light));
+    border-radius: var(--radius-lg);
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    transition: transform 0.3s var(--ease-spring);
+  }
+
+  .phrase-builder__card.has-phrase {
+    transform: scale(1.02);
+  }
+
+  .phrase-builder__card-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 600;
+  }
+
+  .phrase-builder__card-text {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-golden);
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Quote */
+  .pillar--mindset .pillar__quote {
+    border-left: 4px solid var(--color-mindset);
+    padding: var(--space-lg) var(--space-xl);
+    background: var(--color-mindset-light);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .pillar--mindset .pillar__quote p {
+    font-size: var(--text-lg);
+    font-style: italic;
+    color: var(--color-navy);
+  }
+
+  @media (max-width: 480px) {
+    .pillar--mindset .pillar__header {
+      gap: var(--space-sm);
+    }
+
+    .pillar--mindset .pillar__number {
+      width: 40px;
+      height: 40px;
+      font-size: var(--text-base);
+    }
+
+    .phrase-chip {
+      padding: 0.35rem 0.7rem;
+      font-size: var(--text-xs);
+    }
+
+    .effort-keyword {
+      font-size: var(--text-lg);
+    }
+
+    .phrase-builder {
+      padding: var(--space-lg);
+    }
+
+    .phrase-builder__input {
+      font-size: var(--text-base);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .phrase-builder__card {
+      padding: var(--space-md) var(--space-lg);
+    }
+
+    .phrase-builder__card-text {
+      font-size: var(--text-base);
+    }
+
+    .pillar--mindset .pillar__quote {
+      padding: var(--space-md) var(--space-lg);
+    }
+  }
+</style>
+
+<script>
+  const input = document.getElementById('phrase-input') as HTMLInputElement;
+  const preview = document.getElementById('phrase-preview');
+  const card = document.getElementById('phrase-card');
+  const chips = document.querySelectorAll('.phrase-chip');
+
+  const STORAGE_KEY = 'actimax-power-phrase';
+
+  // Load saved phrase
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved && input && preview) {
+    input.value = saved;
+    preview.textContent = `"${saved}"`;
+    card?.classList.add('has-phrase');
+  }
+
+  // Update preview on input
+  input?.addEventListener('input', () => {
+    const val = input.value.trim();
+    if (preview) {
+      preview.textContent = val ? `"${val}"` : 'Tu frase aparecerá aquí';
+    }
+    card?.classList.toggle('has-phrase', val.length > 0);
+    if (val) {
+      localStorage.setItem(STORAGE_KEY, val);
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+  });
+
+  // Click example chips to populate
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.textContent?.replace(/[""]/g, '').trim() || '';
+      if (input) {
+        input.value = text;
+        input.dispatchEvent(new Event('input'));
+        input.focus();
+      }
+    });
+  });
+</script>

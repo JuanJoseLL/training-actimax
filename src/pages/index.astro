@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HeroSection from '../components/HeroSection.astro';
+import PillarNav from '../components/PillarNav.astro';
+import WelcomeSection from '../components/WelcomeSection.astro';
+import PillarOverview from '../components/PillarOverview.astro';
+import PillarHydration from '../components/PillarHydration.astro';
+import PillarEnergy from '../components/PillarEnergy.astro';
+import PillarSleep from '../components/PillarSleep.astro';
+import PillarMindset from '../components/PillarMindset.astro';
+import PillarNutrition from '../components/PillarNutrition.astro';
+import ClosingSection from '../components/ClosingSection.astro';
 ---
 
 <Layout>
-	<Welcome />
+  <main>
+    <HeroSection />
+    <PillarNav />
+    <WelcomeSection />
+    <PillarOverview />
+    <PillarHydration />
+    <PillarEnergy />
+    <PillarSleep />
+    <PillarMindset />
+    <PillarNutrition />
+    <ClosingSection />
+  </main>
 </Layout>

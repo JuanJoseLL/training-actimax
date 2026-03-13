@@ -1,0 +1,353 @@
+---
+// Closing: Habit checklist + final CTA
+import Icon from './Icon.astro';
+
+const habits = [
+  { id: 'water', pillar: 'Hidratación', text: 'Tomar 2-3 vasos de agua antes de entrenar', icon: 'droplet' },
+  { id: 'thermo', pillar: 'Hidratación', text: 'Llevar mi termo (500ml/hora)', icon: 'droplet' },
+  { id: 'prerace', pillar: 'Energía', text: 'Carbohidratos 30 min antes', icon: 'zap' },
+  { id: 'gels', pillar: 'Energía', text: 'Geles listos para el entreno', icon: 'zap' },
+  { id: 'sleep', pillar: 'Sueño', text: 'Dormir 7-8 horas', icon: 'moon' },
+  { id: 'screens', pillar: 'Sueño', text: 'Sin pantallas 30 min antes de dormir', icon: 'moon' },
+  { id: 'phrase', pillar: 'Mentalidad', text: 'Repetir mi frase de poder', icon: 'target' },
+  { id: 'snack', pillar: 'Nutrición', text: 'Llevar un gel energético Actimax', icon: 'leaf' },
+];
+---
+
+<section class="section closing" id="cierre">
+  <div class="section__inner">
+    <h2 class="closing__title reveal">Tu rutina invisible de hoy</h2>
+    <p class="closing__sub reveal">El rendimiento se construye en lo que repites cuando nadie te ve.</p>
+
+    <div class="habits" id="habits-container">
+      <ul class="habit-list">
+        {habits.map((h) => (
+          <li class="habit-item">
+            <label>
+              <input type="checkbox" data-habit={h.id} />
+              <span class="habit-check" aria-hidden="true"></span>
+              <span class="habit-icon" aria-hidden="true"><Icon name={h.icon} size={18} /></span>
+              <span class="habit-text">{h.text}</span>
+            </label>
+          </li>
+        ))}
+      </ul>
+
+      <div class="habit-progress">
+        <div class="habit-progress__bar">
+          <div class="habit-progress__fill" id="habit-fill"></div>
+        </div>
+        <span class="habit-progress__text" id="habit-count">0 de {habits.length} hábitos</span>
+      </div>
+    </div>
+
+    <!-- Final CTA -->
+    <div class="closing__cta reveal">
+      <div class="closing__recap">
+        <p>En cómo te hidratas. En cómo eliges tu energía. En cómo descansas. En cómo te hablas. En cómo te alimentas cada día.</p>
+      </div>
+
+      <blockquote class="closing__quote">
+        <p>No se trata de hacerlo perfecto,<br/>sino de hacerlo <strong>consciente.</strong></p>
+        <p class="closing__small">Un hábito a la vez. Una decisión mejor cada día.</p>
+      </blockquote>
+
+      <div class="closing__brand">
+        <img src="/logo-white.png" alt="Actimax" class="closing__logo-img" />
+        <p class="closing__tagline">Entrena con estrategia.<br/><strong>Entrena con Actimax.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .closing {
+    background: var(--color-surface);
+  }
+
+  .closing__title {
+    font-size: var(--text-2xl);
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .closing__sub {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    margin-bottom: var(--space-2xl);
+  }
+
+  /* Habit checklist */
+  .habits {
+    max-width: 520px;
+    margin: 0 auto var(--space-3xl);
+  }
+
+  .habit-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .habit-item label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 0.7rem var(--space-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .habit-item label:hover {
+    background: var(--color-warm-yellow);
+  }
+
+  .habit-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .habit-check {
+    width: 26px;
+    height: 26px;
+    border-radius: var(--radius-sm);
+    border: 2px solid var(--color-navy);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s var(--ease-spring);
+  }
+
+  .habit-item input:checked + .habit-check {
+    background: var(--color-navy);
+    border-color: var(--color-navy);
+    transform: scale(1.1);
+  }
+
+  .habit-item input:checked + .habit-check::after {
+    content: '';
+    width: 7px;
+    height: 12px;
+    border: solid var(--color-golden);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg) translate(-1px, -1px);
+  }
+
+  .habit-item input:focus-visible + .habit-check {
+    outline: 2px solid var(--color-golden);
+    outline-offset: 2px;
+  }
+
+  .habit-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-navy);
+    flex-shrink: 0;
+  }
+
+  .habit-item .habit-text {
+    font-size: var(--text-base);
+    color: var(--color-body-text);
+    transition: color 0.2s, opacity 0.2s;
+  }
+
+  .habit-item input:checked ~ .habit-text {
+    text-decoration: line-through;
+    color: var(--color-muted);
+    opacity: 0.7;
+  }
+
+  /* Progress bar */
+  .habit-progress {
+    text-align: center;
+  }
+
+  .habit-progress__bar {
+    height: 8px;
+    background: var(--color-warm-yellow);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--space-sm);
+  }
+
+  .habit-progress__fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-navy);
+    border-radius: 4px;
+    transition: width 0.4s var(--ease-out), background 0.4s;
+  }
+
+  .habit-progress__fill.complete {
+    background: var(--color-golden);
+  }
+
+  .habit-progress__text {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+
+  /* Final CTA area */
+  .closing__cta {
+    text-align: center;
+  }
+
+  .closing__recap {
+    margin-bottom: var(--space-xl);
+  }
+
+  .closing__recap p {
+    font-size: var(--text-lg);
+    color: var(--color-body-text);
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .closing__quote {
+    padding: var(--space-xl);
+    background: var(--color-warm-yellow);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .closing__quote p {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-navy);
+    line-height: 1.4;
+  }
+
+  .closing__quote strong {
+    color: var(--color-golden);
+    background: var(--color-navy);
+    padding: 0.1em 0.3em;
+    border-radius: 4px;
+  }
+
+  .closing__small {
+    font-size: var(--text-base) !important;
+    font-weight: 400 !important;
+    color: var(--color-muted) !important;
+    margin-top: var(--space-md);
+  }
+
+  .closing__brand {
+    padding: var(--space-2xl) var(--space-xl);
+    background: var(--color-navy);
+    border-radius: var(--radius-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .closing__logo-img {
+    height: 36px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
+  }
+
+  .closing__tagline {
+    font-size: var(--text-xl);
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
+  }
+
+  .closing__tagline strong {
+    color: var(--color-golden);
+    font-weight: 800;
+  }
+
+  @media (max-width: 480px) {
+    .habit-item label {
+      gap: var(--space-sm);
+      padding: 0.6rem var(--space-sm);
+    }
+
+    .habit-check {
+      width: 24px;
+      height: 24px;
+    }
+
+    .habit-item .habit-text {
+      font-size: var(--text-sm);
+    }
+
+    .closing__quote {
+      padding: var(--space-lg);
+    }
+
+    .closing__quote p {
+      font-size: var(--text-lg);
+    }
+
+    .closing__brand {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .closing__tagline {
+      font-size: var(--text-lg);
+    }
+
+    .closing__logo-img {
+      height: 28px;
+    }
+
+    .closing__recap p {
+      font-size: var(--text-base);
+    }
+  }
+</style>
+
+<script>
+  const checkboxes = document.querySelectorAll<HTMLInputElement>('[data-habit]');
+  const fill = document.getElementById('habit-fill');
+  const countText = document.getElementById('habit-count');
+  const total = checkboxes.length;
+
+  const today = new Date().toISOString().split('T')[0];
+  const STORAGE_KEY = `actimax-habits-${today}`;
+
+  // Load saved state
+  const savedState: Record<string, boolean> = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  checkboxes.forEach(cb => {
+    const id = cb.dataset.habit!;
+    if (savedState[id]) cb.checked = true;
+  });
+  updateProgress();
+
+  // Listen for changes
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const state: Record<string, boolean> = {};
+      checkboxes.forEach(c => {
+        state[c.dataset.habit!] = c.checked;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateProgress();
+    });
+  });
+
+  function updateProgress() {
+    const checked = document.querySelectorAll<HTMLInputElement>('[data-habit]:checked').length;
+    const pct = (checked / total) * 100;
+    if (fill) {
+      fill.style.width = `${pct}%`;
+      fill.classList.toggle('complete', checked === total);
+    }
+    if (countText) {
+      countText.textContent = checked === total
+        ? `${checked} de ${total} hábitos completados`
+        : `${checked} de ${total} hábitos`;
+    }
+  }
+</script>

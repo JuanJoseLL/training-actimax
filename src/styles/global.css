@@ -1,0 +1,265 @@
+/* ============================================
+   EL ENTRENAMIENTO INVISIBLE — Actimax
+   Global Design Tokens & Base Styles
+   ============================================ */
+
+/* Animated custom property for pie chart */
+@property --pie-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --progress-width {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-dark-text);
+  background: var(--color-background);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+input {
+  font: inherit;
+}
+
+/* ---- Design Tokens ---- */
+:root {
+  /* Brand palette */
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2C3E6B;
+  --color-navy-deep: #0F1B33;
+  --color-golden: #F5C518;
+  --color-golden-light: #FFD84D;
+  --color-warm-yellow: #FFF8E1;
+  --color-warm-yellow-deep: #FFF0C2;
+  --color-background: #FFFDF7;
+  --color-surface: #FFFFFF;
+  --color-dark-text: #1B2A4A;
+  --color-body-text: #374151;
+  --color-muted: #6B7280;
+
+  /* Pillar accent colors */
+  --color-hydration: #2196F3;
+  --color-hydration-light: #E3F2FD;
+  --color-energy: #FF9800;
+  --color-energy-light: #FFF3E0;
+  --color-sleep: #7C4DFF;
+  --color-sleep-light: #EDE7F6;
+  --color-mindset: #E91E63;
+  --color-mindset-light: #FCE4EC;
+  --color-nutrition: #4CAF50;
+  --color-nutrition-light: #E8F5E9;
+
+  /* Typography */
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.35rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --text-3xl: clamp(2.5rem, 2rem + 3vw, 4rem);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Section rhythm */
+  --section-py: clamp(2.5rem, 8vw, 7rem);
+  --section-px: clamp(1rem, 5vw, 4rem);
+  --content-max: 720px;
+
+  /* Borders & shadows */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 3px rgba(27, 42, 74, 0.08);
+  --shadow-md: 0 4px 12px rgba(27, 42, 74, 0.1);
+  --shadow-lg: 0 8px 30px rgba(27, 42, 74, 0.12);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- Typography ---- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--color-navy);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+}
+
+h1, h2 {
+  text-transform: uppercase;
+}
+
+p {
+  color: var(--color-body-text);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+strong {
+  color: var(--color-navy);
+  font-weight: 700;
+}
+
+/* ---- Section base ---- */
+.section {
+  padding: var(--section-py) var(--section-px);
+  position: relative;
+}
+
+.section__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+}
+
+/* ---- Scroll reveal animation (CSS-native) ---- */
+@supports (animation-timeline: view()) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+
+  .reveal-delay {
+    animation-range: entry 10% entry 45%;
+  }
+}
+
+@keyframes reveal-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fallback: content is always visible */
+@supports not (animation-timeline: view()) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Utility classes ---- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center { text-align: center; }
+.text-golden { color: var(--color-golden); }
+.text-navy { color: var(--color-navy); }
+.text-muted { color: var(--color-muted); }
+
+/* ---- Grain texture overlay ---- */
+.has-grain {
+  position: relative;
+}
+
+.has-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  z-index: 1;
+}
+
+/* ---- Section divider ---- */
+.divider {
+  width: 40px;
+  height: 3px;
+  background: var(--color-golden);
+  border: none;
+  border-radius: var(--radius-full);
+}
+
+/* ---- Mobile bottom nav spacer ---- */
+@media (max-width: 480px) {
+  body {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

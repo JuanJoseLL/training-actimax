@@ -1,0 +1,202 @@
+---
+// Sticky navigation bar that appears after hero
+import Icon from './Icon.astro';
+
+const pillars = [
+  { id: 'hidratacion', label: 'Hidratación', icon: 'droplet', color: 'var(--color-hydration)' },
+  { id: 'energia', label: 'Energía', icon: 'zap', color: 'var(--color-energy)' },
+  { id: 'sueno', label: 'Sueño', icon: 'moon', color: 'var(--color-sleep)' },
+  { id: 'mentalidad', label: 'Mentalidad', icon: 'target', color: 'var(--color-mindset)' },
+  { id: 'nutricion', label: 'Nutrición', icon: 'leaf', color: 'var(--color-nutrition)' },
+];
+---
+
+<nav class="pillar-nav" id="pillar-nav" aria-label="Pilares del entrenamiento invisible">
+  <div class="pillar-nav__inner">
+    <a href="#hero" class="pillar-nav__brand" aria-label="Volver al inicio">
+      <img src="/logo-white.png" alt="Actimax" class="pillar-nav__logo" />
+    </a>
+    <div class="pillar-nav__items">
+    {pillars.map((p) => (
+      <a href={`#${p.id}`} class="pillar-nav__item" data-pillar={p.id}>
+        <span class="pillar-nav__icon" aria-hidden="true">
+          <Icon name={p.icon} size={18} />
+        </span>
+        <span class="pillar-nav__label">{p.label}</span>
+      </a>
+    ))}
+    </div>
+  </div>
+</nav>
+
+<style>
+  .pillar-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(27, 42, 74, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    transform: translateY(-100%);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .pillar-nav.visible {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    .pillar-nav {
+      position: fixed;
+      top: auto;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-bottom: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      transform: translateY(100%);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .pillar-nav.visible {
+      transform: translateY(0);
+    }
+  }
+
+  .pillar-nav__inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: 0.4rem var(--space-md);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .pillar-nav__inner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pillar-nav__brand {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.35rem 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .pillar-nav__brand:hover {
+    opacity: 1;
+  }
+
+  .pillar-nav__logo {
+    height: 16px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .pillar-nav__items {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+  }
+
+  .pillar-nav__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0.35rem 0.6rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s, opacity 0.2s;
+    flex-shrink: 0;
+    min-width: 60px;
+    opacity: 0.6;
+  }
+
+  .pillar-nav__item:hover,
+  .pillar-nav__item.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .pillar-nav__item.active {
+    background: rgba(245, 197, 24, 0.12);
+  }
+
+  .pillar-nav__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .pillar-nav__label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .pillar-nav__inner {
+      padding: 0.4rem 0.5rem;
+      gap: var(--space-sm);
+    }
+
+    .pillar-nav__brand {
+      display: none;
+    }
+
+    .pillar-nav__items {
+      justify-content: space-around;
+    }
+
+    .pillar-nav__item {
+      min-width: 54px;
+      padding: 0.3rem 0.45rem;
+    }
+
+    .pillar-nav__label {
+      font-size: 0.58rem;
+    }
+  }
+</style>
+
+<script>
+  // Show/hide nav based on scroll position & highlight active pillar
+  const nav = document.getElementById('pillar-nav');
+  const hero = document.getElementById('hero');
+  const pillarIds = ['hidratacion', 'energia', 'sueno', 'mentalidad', 'nutricion'];
+  const sections = pillarIds.map(id => document.getElementById(id)).filter(Boolean);
+  const navItems = document.querySelectorAll('.pillar-nav__item');
+
+  // Show nav after scrolling past hero
+  const heroObs = new IntersectionObserver(([entry]) => {
+    nav?.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+
+  if (hero) heroObs.observe(hero);
+
+  // Highlight active pillar
+  const sectionObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(item => item.classList.remove('active'));
+        const active = document.querySelector(`.pillar-nav__item[data-pillar="${entry.target.id}"]`);
+        active?.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => sectionObs.observe(s));
+</script>
