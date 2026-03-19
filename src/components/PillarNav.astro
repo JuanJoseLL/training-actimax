@@ -8,6 +8,7 @@ const pillars = [
   { id: 'sueno', label: 'Sueño', icon: 'moon', color: 'var(--color-sleep)' },
   { id: 'mentalidad', label: 'Mentalidad', icon: 'target', color: 'var(--color-mindset)' },
   { id: 'nutricion', label: 'Nutrición', icon: 'leaf', color: 'var(--color-nutrition)' },
+  { id: 'mi-plan', label: 'Mi Plan', icon: 'calculator', color: 'var(--color-energy)' },
 ];
 ---
 
@@ -176,7 +177,7 @@ const pillars = [
   // Show/hide nav based on scroll position & highlight active pillar
   const nav = document.getElementById('pillar-nav');
   const hero = document.getElementById('hero');
-  const pillarIds = ['hidratacion', 'energia', 'sueno', 'mentalidad', 'nutricion'];
+  const pillarIds = ['hidratacion', 'energia', 'sueno', 'mentalidad', 'nutricion', 'mi-plan'];
   const sections = pillarIds.map(id => document.getElementById(id)).filter(Boolean);
   const navItems = document.querySelectorAll('.pillar-nav__item');
 
