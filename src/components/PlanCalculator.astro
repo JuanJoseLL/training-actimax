@@ -113,7 +113,7 @@ const checklistData = [
             </div>
           ))}
         </div>
-        <p class="plan-disclaimer">Las zonas de frecuencia cardíaca se calculan con la fórmula estándar (220 - edad). Esta es una estimación general. Para un cálculo personalizado, consulta a un profesional de la salud deportiva.</p>
+        <p class="plan-disclaimer">Las zonas de frecuencia cardíaca se calculan con la fórmula estándar (220 - edad).</p>
       </div>
     </div>
 
@@ -236,8 +236,8 @@ const checklistData = [
       </h3>
       <div class="checklist-phases">
         {checklistData.map((phase) => (
-          <div class="checklist-phase">
-            <h4 class="checklist-phase__title">{phase.phase}</h4>
+          <details class="checklist-phase" open>
+            <summary class="checklist-phase__title">{phase.phase}</summary>
             <ul class="checklist-list">
               {phase.items.map((item) => (
                 <li class="checklist-item">
@@ -249,7 +249,7 @@ const checklistData = [
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
         ))}
       </div>
       <div class="checklist-progress">
@@ -263,8 +263,9 @@ const checklistData = [
 </section>
 
 <style>
+  /* === Section === */
   .plan-calc {
-    background: var(--color-background);
+    background: linear-gradient(180deg, var(--color-background) 0%, var(--color-warm-yellow) 50%, var(--color-background) 100%);
   }
 
   .plan-calc__title {
@@ -280,10 +281,15 @@ const checklistData = [
     margin-bottom: var(--space-2xl);
   }
 
+  /* === Steps (card containers) === */
   .plan-step {
-    max-width: 600px;
+    max-width: 660px;
     margin: 0 auto var(--space-xl);
-    transition: opacity 0.4s var(--ease-out), max-height 0.5s var(--ease-out);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), max-height 0.5s var(--ease-out);
   }
 
   .plan-step[aria-hidden="true"] {
@@ -291,7 +297,9 @@ const checklistData = [
     max-height: 0;
     overflow: hidden;
     margin: 0 auto;
+    padding: 0 var(--space-xl);
     pointer-events: none;
+    transform: translateY(12px);
   }
 
   .plan-step__heading {
@@ -306,14 +314,15 @@ const checklistData = [
   .plan-step__number {
     display: grid;
     place-items: center;
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: var(--radius-full);
     background: var(--color-energy);
     color: white;
     font-size: var(--text-sm);
     font-weight: 800;
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
   }
 
   .plan-step__body {
@@ -322,6 +331,7 @@ const checklistData = [
     gap: var(--space-lg);
   }
 
+  /* === Inputs === */
   .age-input-group,
   .duration-input-group {
     display: flex;
@@ -330,8 +340,8 @@ const checklistData = [
   }
 
   .plan-input {
-    width: 100px;
-    padding: 0.6rem var(--space-md);
+    width: 120px;
+    padding: 0.75rem var(--space-md);
     border: 2px solid var(--color-warm-yellow-deep);
     border-radius: var(--radius-md);
     font-size: var(--text-lg);
@@ -339,16 +349,19 @@ const checklistData = [
     color: var(--color-navy);
     background: var(--color-surface);
     text-align: center;
-    transition: border-color 0.2s;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    min-height: 48px;
   }
 
   .plan-input:focus {
     outline: none;
     border-color: var(--color-energy);
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.15);
   }
 
   .plan-input.error {
     border-color: #E53935;
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
   }
 
   .plan-input__suffix {
@@ -370,6 +383,7 @@ const checklistData = [
     margin-top: var(--space-md);
   }
 
+  /* === Zones Display === */
   .zones-display {
     margin-top: var(--space-lg);
     transition: opacity 0.4s var(--ease-out);
@@ -401,15 +415,20 @@ const checklistData = [
   }
 
   .zone-card {
-    background: var(--color-surface);
+    background: var(--color-warm-yellow);
     border-radius: var(--radius-md);
     padding: var(--space-sm) var(--space-xs);
     text-align: center;
     border-top: 3px solid var(--zone-color);
-    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
     gap: 2px;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+  }
+
+  .zone-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
   }
 
   .zone-card__label {
@@ -431,9 +450,13 @@ const checklistData = [
     line-height: 1.3;
   }
 
+  /* === Toggle Group (Segmented Control) === */
   .toggle-group {
     display: flex;
-    gap: var(--space-sm);
+    background: var(--color-warm-yellow);
+    border-radius: var(--radius-md);
+    padding: 4px;
+    gap: 4px;
   }
 
   .toggle-btn {
@@ -442,28 +465,30 @@ const checklistData = [
     align-items: center;
     justify-content: center;
     gap: var(--space-sm);
-    padding: 0.7rem var(--space-md);
-    border: 2px solid var(--color-warm-yellow-deep);
-    border-radius: var(--radius-md);
+    padding: 0.75rem var(--space-md);
+    border: none;
+    border-radius: var(--radius-sm);
     font-size: var(--text-base);
     font-weight: 600;
     color: var(--color-muted);
-    background: var(--color-surface);
+    background: transparent;
     cursor: pointer;
-    transition: all 0.2s var(--ease-out);
+    transition: all 0.25s var(--ease-out);
+    min-height: 48px;
   }
 
   .toggle-btn--active {
-    border-color: var(--color-energy);
     color: var(--color-navy);
-    background: var(--color-energy-light);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
   }
 
   .toggle-btn:hover:not(.toggle-btn--active) {
-    border-color: var(--color-energy);
     color: var(--color-navy);
+    background: rgba(255, 255, 255, 0.5);
   }
 
+  /* === Zone Selector === */
   .zone-selector {
     transition: opacity 0.3s, max-height 0.3s;
   }
@@ -489,7 +514,7 @@ const checklistData = [
 
   .zone-btn {
     flex: 1;
-    padding: 0.5rem;
+    padding: 0.6rem 0.5rem;
     border: 2px solid var(--color-warm-yellow-deep);
     border-radius: var(--radius-sm);
     font-family: var(--font-display);
@@ -498,20 +523,24 @@ const checklistData = [
     color: var(--color-muted);
     background: var(--color-surface);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s var(--ease-out);
+    min-height: 44px;
   }
 
   .zone-btn[aria-pressed="true"] {
     border-color: var(--zone-color);
     color: var(--zone-color);
     background: color-mix(in srgb, var(--zone-color) 10%, white);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--zone-color) 25%, transparent);
   }
 
   .zone-btn:hover:not([aria-pressed="true"]) {
     border-color: var(--zone-color);
     color: var(--zone-color);
+    transform: translateY(-1px);
   }
 
+  /* === Duration === */
   .duration-label {
     font-size: var(--text-sm);
     font-weight: 600;
@@ -525,6 +554,7 @@ const checklistData = [
     flex-direction: column;
   }
 
+  /* === Results === */
   .results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -539,11 +569,23 @@ const checklistData = [
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    border-left: 4px solid transparent;
+    transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
   }
 
+  .result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .result-card--before { border-left-color: var(--color-energy); }
+  .result-card--energy { border-left-color: var(--color-golden); }
+  .result-card--hydration { border-left-color: var(--color-hydration); }
+  .result-card--after { border-left-color: var(--color-nutrition); }
+
   .result-card__icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: var(--radius-sm);
     display: grid;
     place-items: center;
@@ -588,40 +630,86 @@ const checklistData = [
     font-style: italic;
   }
 
+  /* === Checklist (collapsible phases) === */
   .checklist-phases {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
+  }
+
+  .checklist-phase {
+    border-radius: var(--radius-md);
+    background: var(--color-warm-yellow);
+    overflow: hidden;
   }
 
   .checklist-phase__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-display);
     font-size: var(--text-base);
     font-weight: 700;
     color: var(--color-energy);
-    margin-bottom: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    list-style: none;
+    transition: background 0.2s;
+    min-height: 48px;
     text-transform: none;
+  }
+
+  .checklist-phase__title::-webkit-details-marker {
+    display: none;
+  }
+
+  .checklist-phase__title::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--color-energy);
+    border-bottom: 2px solid var(--color-energy);
+    transform: rotate(45deg);
+    transition: transform 0.25s var(--ease-out);
+    flex-shrink: 0;
+  }
+
+  .checklist-phase[open] > .checklist-phase__title::after {
+    transform: rotate(-135deg);
+  }
+
+  .checklist-phase__title:hover {
+    background: var(--color-warm-yellow-deep);
   }
 
   .checklist-list {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: 0;
+    padding: 0 var(--space-sm) var(--space-sm);
   }
 
   .checklist-item label {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    padding: 0.5rem var(--space-md);
+    padding: 0.6rem var(--space-md);
     border-radius: var(--radius-sm);
     cursor: pointer;
     transition: background 0.15s;
     user-select: none;
     -webkit-user-select: none;
+    min-height: 44px;
   }
 
   .checklist-item label:hover {
-    background: var(--color-warm-yellow);
+    background: rgba(255, 255, 255, 0.6);
+  }
+
+  .checklist-item label:active {
+    background: rgba(255, 255, 255, 0.8);
   }
 
   .checklist-item input[type="checkbox"] {
@@ -632,8 +720,8 @@ const checklistData = [
   }
 
   .checklist-check {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: var(--radius-sm);
     border: 2px solid var(--color-navy);
     display: grid;
@@ -690,7 +778,7 @@ const checklistData = [
   .checklist-progress__fill {
     height: 100%;
     width: 0%;
-    background: var(--color-energy);
+    background: linear-gradient(90deg, var(--color-energy), var(--color-golden));
     border-radius: 4px;
     transition: width 0.4s var(--ease-out);
   }
@@ -701,9 +789,38 @@ const checklistData = [
     font-weight: 600;
   }
 
+  /* === Responsive: Tablet === */
+  @media (max-width: 768px) {
+    .plan-step {
+      padding: var(--space-lg);
+    }
+  }
+
+  /* === Responsive: Mobile === */
   @media (max-width: 480px) {
+    .plan-step {
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+    }
+
     .zones-grid {
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .zones-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .zone-card {
+      min-width: 120px;
+      scroll-snap-align: start;
+      flex-shrink: 0;
     }
 
     .results-grid {
@@ -716,13 +833,39 @@ const checklistData = [
     }
 
     .zone-btn {
-      padding: 0.4rem;
+      padding: 0.5rem 0.3rem;
       font-size: var(--text-xs);
+      min-height: 44px;
+    }
+
+    .plan-input {
+      width: 100%;
+      max-width: 140px;
     }
 
     .checklist-item label {
       gap: var(--space-sm);
-      padding: 0.4rem var(--space-sm);
+      padding: 0.5rem var(--space-sm);
+    }
+
+    .checklist-phase__title {
+      padding: var(--space-md);
+    }
+  }
+
+  /* === Reduced Motion === */
+  @media (prefers-reduced-motion: reduce) {
+    .plan-step,
+    .zone-card,
+    .result-card,
+    .toggle-btn,
+    .zone-btn,
+    .checklist-check,
+    .checklist-progress__fill,
+    .zones-display,
+    .zone-selector,
+    .checklist-phase__title::after {
+      transition: none !important;
     }
   }
 </style>
