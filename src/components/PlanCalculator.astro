@@ -153,6 +153,12 @@ const checklistData = [
           </div>
         </div>
 
+        <!-- Race intensity note (hidden by default, shown in race mode) -->
+        <p class="race-note hidden" id="race-note">
+          <Icon name="zap" size={14} />
+          En carrera se asume intensidad máxima — el gel se calcula cada 30 min.
+        </p>
+
         <!-- Duration input -->
         <div class="duration-group">
           <label for="calc-duration" class="duration-label">Duración</label>
@@ -486,6 +492,32 @@ const checklistData = [
   .toggle-btn:hover:not(.toggle-btn--active) {
     color: var(--color-navy);
     background: rgba(255, 255, 255, 0.5);
+  }
+
+  /* === Race Note === */
+  .race-note {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: var(--text-xs);
+    color: var(--color-energy);
+    background: var(--color-energy-light);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--color-energy);
+    transition: opacity 0.3s, max-height 0.3s;
+  }
+
+  .race-note :global(svg) {
+    flex-shrink: 0;
+  }
+
+  .race-note.hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 var(--space-md);
+    margin: 0;
   }
 
   /* === Zone Selector === */
@@ -880,6 +912,7 @@ const checklistData = [
   const stepSession = document.getElementById('step-session')!;
   const toggleBtns = document.querySelectorAll<HTMLButtonElement>('.toggle-btn');
   const zoneSelector = document.getElementById('zone-selector')!;
+  const raceNote = document.getElementById('race-note')!;
   const zoneBtns = document.querySelectorAll<HTMLButtonElement>('.zone-btn');
   const durationInput = document.getElementById('calc-duration') as HTMLInputElement;
   const durationHint = document.getElementById('duration-hint')!;
@@ -975,10 +1008,12 @@ const checklistData = [
 
     if (activityType === 'carrera') {
       zoneSelector.classList.add('hidden');
+      raceNote.classList.remove('hidden');
       selectedZone = null;
       zoneBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
     } else {
       zoneSelector.classList.remove('hidden');
+      raceNote.classList.add('hidden');
     }
 
     tryCalculate();
