@@ -19,7 +19,11 @@ El atleta necesita una herramienta práctica para planificar su sesión diaria: 
 
 ### Entrada a PillarNav
 
-Agregar un nuevo ítem en la barra de navegación sticky para la sección "Mi Plan".
+Agregar un nuevo ítem en la barra de navegación sticky para la sección "Mi Plan":
+- Label: "Mi Plan" (corto, cabe en mobile)
+- Ícono: `calculator` (nuevo SVG en `Icon.astro`, usar paths de Lucide `calculator` icon)
+- Actualizar el array `pillarIds` en el script de `PillarNav.astro` para incluir `'mi-plan'`
+- El IntersectionObserver del nav debe observar la nueva sección
 
 ## Flujo de Interacción
 
@@ -56,12 +60,15 @@ Tarjetas por fase temporal con productos Actimax:
 **Durante - Energía (Geles):**
 - Entrenamiento Z1-Z3: 1 gel cada 45 min → `Math.floor(duración / 45)` geles
 - Entrenamiento Z4-Z5: 1 gel cada 30 min → `Math.floor(duración / 30)` geles
-- Carrera: 1 gel cada 30 min → `Math.floor(duración / 30)` geles
+- Carrera: 1 gel cada 30 min → `Math.floor(duración / 30)` geles (en carrera la intensidad siempre es alta, por eso se usa el intervalo agresivo sin importar distancia)
+- Si el resultado es 0 geles (sesiones < 30-45 min), mostrar mensaje: "Para esta duración no necesitas gel, el Pre Race es suficiente"
 
 **Durante - Hidratación:**
-- 500-600 ml de Bebida Elite por hora (sorbos cada 10 min)
-- Cálculo: `Math.ceil(duración / 60) * 500` a `Math.ceil(duración / 60) * 600` ml
-- Expresado también en caramañolas (~750ml c/u): `Math.ceil(mlTotal / 750)`
+- Cálculo proporcional: `Math.round((duración / 60) * 550)` ml (promedio del rango 500-600ml/hora)
+- Mínimo 250ml para sesiones cortas: `Math.max(Math.round((duración / 60) * 550), 250)`
+- Para sesiones < 30 min mostrar nota: "Hidratación mínima recomendada"
+- Sorbos cada 10 minutos
+- Expresado también en caramañolas (~750ml c/u): `Math.ceil(mlHidratacion / 750)`
 
 **Después (primeros 30 min):**
 - 1 Recovery Pro en 250 ml de agua
@@ -109,7 +116,7 @@ Solo visible cuando el tipo de actividad es "Carrera". Checkboxes interactivos o
 2. Hidratarse y tomar Recovery Pro Actimax
 3. Analizar la prueba: aspectos positivos y a mejorar
 
-**Persistencia:** localStorage key `actimax-checklist-carrera-YYYY-MM-DD`
+**Persistencia:** localStorage key `actimax-checklist-carrera-YYYY-MM-DD` como JSON object con IDs de items como keys (ej: `{"semana-1": true, "semana-2": false, ...}`), siguiendo el patrón de `ClosingSection`
 
 ## Estilo Visual
 
@@ -127,7 +134,7 @@ Solo visible cuando el tipo de actividad es "Carrera". Checkboxes interactivos o
 | Key | Valor | Propósito |
 |-----|-------|-----------|
 | `actimax-edad` | número | Edad del usuario (no pedir de nuevo) |
-| `actimax-checklist-carrera-YYYY-MM-DD` | JSON array de booleans | Estado del checklist por fecha |
+| `actimax-checklist-carrera-YYYY-MM-DD` | JSON object `{itemId: boolean}` | Estado del checklist por fecha |
 
 ## Integración con el Sitio
 
@@ -135,8 +142,26 @@ Solo visible cuando el tipo de actividad es "Carrera". Checkboxes interactivos o
 2. Agregar ícono y enlace en `PillarNav.astro` para la sección `#mi-plan`
 3. Agregar ícono de calculadora/plan en `Icon.astro`
 
+## Validación de Inputs
+
+- **Edad:** Rango 10-99. Si vacío o fuera de rango, mostrar borde rojo e inline hint "Ingresa tu edad (10-99)". Validación en tiempo real (on input).
+- **Duración:** Rango 15-300 min. Si fuera de rango, inline hint "Ingresa entre 15 y 300 minutos". Validación en tiempo real.
+- Los pasos siguientes no se revelan hasta que el input actual sea válido.
+
+## Accesibilidad
+
+- Pasos progresivos: usar `aria-expanded` en el trigger y `aria-hidden` en contenido colapsado
+- Resultados: envolver en `aria-live="polite"` para anunciar cambios al recalcular
+- Toggle Entrenamiento/Carrera: implementar como `role="radiogroup"` con `role="radio"` en cada opción, navegable con flechas
+- Selector de zona: botones con `aria-pressed` para la zona activa
+- Inputs numéricos: `aria-label` descriptivo, `aria-describedby` para hints de error
+
+## Disclaimer Médico
+
+Texto bajo la tabla de zonas: *"Las zonas de frecuencia cardíaca se calculan con la fórmula estándar (220 - edad). Esta es una estimación general. Para un cálculo personalizado, consulta a un profesional de la salud deportiva."* Estilo: texto small, color gris, sin caja.
+
 ## Consideraciones
 
 - No requiere dependencias adicionales, todo es vanilla JS + CSS
-- La fórmula FC máx = 220 - edad es una aproximación estándar, no un diagnóstico médico (incluir disclaimer)
+- La configuración de sesión (tipo, zona, duración) es intencionalmente efímera: el atleta configura diferente cada día, no tiene sentido persistirla
 - El checklist de carrera es una herramienta de preparación, el de hábitos del ClosingSection se mantiene separado
