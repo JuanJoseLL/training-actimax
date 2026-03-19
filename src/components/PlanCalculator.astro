@@ -582,6 +582,12 @@ const checklistData = [
     font-style: italic;
   }
 
+  .result-card__note-text {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    font-style: italic;
+  }
+
   .checklist-phases {
     display: flex;
     flex-direction: column;
@@ -762,7 +768,8 @@ const checklistData = [
   ];
 
   // === Load persisted age ===
-  const savedAge = localStorage.getItem('actimax-edad');
+  let savedAge: string | null = null;
+  try { savedAge = localStorage.getItem('actimax-edad'); } catch { /* storage unavailable */ }
   if (savedAge) {
     ageInput.value = savedAge;
     processAge(parseInt(savedAge, 10));
@@ -791,7 +798,7 @@ const checklistData = [
     }
     ageHint.textContent = '';
     ageInput.classList.remove('error');
-    localStorage.setItem('actimax-edad', String(val));
+    try { localStorage.setItem('actimax-edad', String(val)); } catch { /* storage unavailable */ }
     processAge(val);
   });
 
@@ -912,9 +919,11 @@ const checklistData = [
 
     resultGelDetail.textContent = gelNote;
     if (gelCount === 0) {
-      resultGelProduct.innerHTML = '<span class="result-card__note">Para esta duración no necesitas gel, el Pre Race es suficiente</span>';
+      resultGelProduct.textContent = 'Para esta duración no necesitas gel, el Pre Race es suficiente';
+      resultGelProduct.classList.add('result-card__note-text');
     } else {
-      resultGelProduct.innerHTML = `<strong>${gelCount} gel${gelCount > 1 ? 'es' : ''}</strong> Actimax`;
+      resultGelProduct.textContent = `${gelCount} gel${gelCount > 1 ? 'es' : ''} Actimax`;
+      resultGelProduct.classList.remove('result-card__note-text');
     }
 
     // Hydration calculation
@@ -926,7 +935,7 @@ const checklistData = [
     } else {
       resultHydrationDetail.textContent = `Sorbos cada 10 min · ~${caramanolas} caramañola${caramanolas > 1 ? 's' : ''}`;
     }
-    resultHydrationProduct.innerHTML = `<strong>${mlHidratacion} ml</strong> Bebida Elite`;
+    resultHydrationProduct.textContent = `${mlHidratacion} ml — Bebida Elite`;
 
     // Show results
     stepResults.setAttribute('aria-hidden', 'false');
@@ -943,7 +952,9 @@ const checklistData = [
   const today = new Date().toISOString().split('T')[0];
   const CHECKLIST_KEY = `actimax-checklist-carrera-${today}`;
 
-  const savedChecklist: Record<string, boolean> = JSON.parse(localStorage.getItem(CHECKLIST_KEY) || '{}');
+  let savedChecklistRaw = '{}';
+  try { savedChecklistRaw = localStorage.getItem(CHECKLIST_KEY) || '{}'; } catch { /* storage unavailable */ }
+  const savedChecklist: Record<string, boolean> = JSON.parse(savedChecklistRaw);
   checklistBoxes.forEach(cb => {
     const id = cb.dataset.check!;
     if (savedChecklist[id]) cb.checked = true;
@@ -956,7 +967,7 @@ const checklistData = [
       checklistBoxes.forEach(c => {
         state[c.dataset.check!] = c.checked;
       });
-      localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state));
+      try { localStorage.setItem(CHECKLIST_KEY, JSON.stringify(state)); } catch { /* storage unavailable */ }
       updateChecklistProgress();
     });
   });
