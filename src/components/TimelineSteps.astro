@@ -9,6 +9,7 @@ interface Step {
   description: string;
   dataPoint?: string;
   product?: string;
+  productUrl?: string;
 }
 
 interface Props {
@@ -33,9 +34,11 @@ const { steps, accentColor = 'var(--color-hydration)' } = Astro.props;
         {step.dataPoint && (
           <span class="timeline__data">{step.dataPoint}</span>
         )}
-        {step.product && (
+        {step.product && step.productUrl ? (
+          <a class="timeline__product" href={step.productUrl} target="_blank" rel="noopener noreferrer">{step.product}</a>
+        ) : step.product ? (
           <span class="timeline__product">{step.product}</span>
-        )}
+        ) : null}
       </div>
     </div>
   ))}
@@ -137,6 +140,12 @@ const { steps, accentColor = 'var(--color-hydration)' } = Astro.props;
     font-size: var(--text-xs);
     font-weight: 600;
     color: var(--color-golden);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a.timeline__product:hover {
+    opacity: 0.85;
   }
 
   @media (max-width: 480px) {

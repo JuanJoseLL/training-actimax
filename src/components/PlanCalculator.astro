@@ -16,7 +16,7 @@ const checklistData = [
       { id: 'sem-1', text: 'Hacer supercompensación' },
       { id: 'sem-2', text: 'Aumentar carbohidratos (pastas)' },
       { id: 'sem-3', text: 'Verificar estado del equipo (uniforme, gafas, camiseta, pantaloneta, visera, tenis)' },
-      { id: 'sem-4', text: 'Preparar productos Actimax (hidratante, pre race, protector solar, gel, recovery pro)' },
+      { id: 'sem-4', text: 'Preparar productos Actimax (hidratante, pre race, protector solar, gel, recovery pro)', url: 'https://actimax.com.co' },
     ],
   },
   {
@@ -63,7 +63,7 @@ const checklistData = [
     phase: 'Día de la carrera — Después',
     items: [
       { id: 'dia-p1', text: 'Estirar y masaje con hielo' },
-      { id: 'dia-p2', text: 'Hidratarse y tomar Recovery Pro Actimax' },
+      { id: 'dia-p2', text: 'Hidratarse y tomar Recovery Pro Actimax', url: 'https://actimax.com.co' },
       { id: 'dia-p3', text: 'Analizar la prueba: aspectos positivos y a mejorar' },
     ],
   },
@@ -196,7 +196,7 @@ const checklistData = [
           <h4 class="result-card__title">Antes</h4>
           <p class="result-card__detail">20 min antes de iniciar</p>
           <div class="result-card__product">
-            <strong>1 Pre Race</strong>
+            <a href="https://actimax.com.co/productos/bebidas-deportivas/pre-race-tarro-500gr/" target="_blank" rel="noopener noreferrer"><strong>1 Pre Race</strong></a>
           </div>
         </div>
 
@@ -208,6 +208,7 @@ const checklistData = [
           <h4 class="result-card__title">Durante — Energía</h4>
           <p class="result-card__detail" id="result-gel-detail"></p>
           <div class="result-card__product" id="result-gel-product"></div>
+          <a class="result-card__link" href="https://actimax.com.co/productos/geles-energeticos/gel-energetico-24-con-cafeina/" target="_blank" rel="noopener noreferrer" id="result-gel-link">Ver producto</a>
         </div>
 
         <!-- During: Hydration -->
@@ -218,6 +219,7 @@ const checklistData = [
           <h4 class="result-card__title">Durante — Hidratación</h4>
           <p class="result-card__detail" id="result-hydration-detail"></p>
           <div class="result-card__product" id="result-hydration-product"></div>
+          <a class="result-card__link" href="https://actimax.com.co/productos/bebidas-deportivas/bebida-deportiva-elite-con-cafeina-500gr/" target="_blank" rel="noopener noreferrer">Ver producto</a>
         </div>
 
         <!-- After -->
@@ -228,7 +230,7 @@ const checklistData = [
           <h4 class="result-card__title">Después</h4>
           <p class="result-card__detail">En los primeros 30 min</p>
           <div class="result-card__product">
-            <strong>1 Recovery Pro</strong> en 250 ml de agua
+            <a href="https://actimax.com.co/productos/bebidas-deportivas/recovery-pro-tarro-400gr/" target="_blank" rel="noopener noreferrer"><strong>1 Recovery Pro</strong></a> en 250 ml de agua
           </div>
         </div>
       </div>
@@ -250,7 +252,12 @@ const checklistData = [
                   <label>
                     <input type="checkbox" data-check={item.id} />
                     <span class="checklist-check" aria-hidden="true"></span>
-                    <span class="checklist-text">{item.text}</span>
+                    <span class="checklist-text">
+                      {item.text}
+                      {'url' in item && item.url && (
+                        <a class="checklist-product-link" href={item.url} target="_blank" rel="noopener noreferrer">Ver productos</a>
+                      )}
+                    </span>
                   </label>
                 </li>
               ))}
@@ -650,6 +657,38 @@ const checklistData = [
     color: var(--color-energy);
   }
 
+  .result-card__product a {
+    color: var(--color-navy);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--color-golden);
+    transition: border-color 0.2s;
+  }
+
+  .result-card__product a:hover {
+    border-bottom-style: solid;
+  }
+
+  .result-card__product a strong {
+    color: var(--color-energy);
+  }
+
+  .result-card__link {
+    display: inline-block;
+    margin-top: var(--space-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-golden);
+    background: var(--color-navy);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .result-card__link:hover {
+    opacity: 0.85;
+  }
+
   .result-card__note {
     font-size: var(--text-xs);
     color: var(--color-muted);
@@ -792,6 +831,24 @@ const checklistData = [
     text-decoration: line-through;
     color: var(--color-muted);
     opacity: 0.7;
+  }
+
+  .checklist-product-link {
+    display: inline-block;
+    margin-left: var(--space-xs);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--color-golden);
+    background: var(--color-navy);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    vertical-align: middle;
+    transition: opacity 0.2s;
+  }
+
+  .checklist-product-link:hover {
+    opacity: 0.85;
   }
 
   .checklist-progress {
@@ -1096,12 +1153,15 @@ const checklistData = [
     const gelCount = Math.floor(duration / gelInterval);
 
     resultGelDetail.textContent = gelNote;
+    const resultGelLink = document.getElementById('result-gel-link') as HTMLAnchorElement | null;
     if (gelCount === 0) {
       resultGelProduct.textContent = 'Para esta duración no necesitas gel, el Pre Race es suficiente';
       resultGelProduct.classList.add('result-card__note-text');
+      if (resultGelLink) resultGelLink.style.display = 'none';
     } else {
       resultGelProduct.textContent = `${gelCount} gel${gelCount > 1 ? 'es' : ''} Actimax`;
       resultGelProduct.classList.remove('result-card__note-text');
+      if (resultGelLink) resultGelLink.style.display = '';
     }
 
     // Hydration calculation
