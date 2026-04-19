@@ -44,7 +44,7 @@ const guidelines = [
       <div class="habit-badge">Mini hábito</div>
       <p class="habit-text"><strong>Una barra de proteína a la mano cambia tu recuperación.</strong></p>
       <a href="https://actimax.com.co/productos/durante/protein-bar-caja-x18/" target="_blank" rel="noopener" class="habit-product">
-        <img src="https://actimax.com.co/wp-content/uploads/2025/08/Protein-Bar-Caja-x18-600x600-1.webp" alt="Protein Bar Actimax" class="habit-product__img" />
+        <img src="/protein-bar.webp" alt="Protein Bar Actimax" class="habit-product__img" />
         <div class="habit-product__info">
           <strong>Protein Bar Actimax</strong>
           <p>Proteína práctica y de calidad para complementar tu alimentación diaria. Ideal como snack entre comidas o después del entreno.</p>
@@ -188,14 +188,15 @@ const guidelines = [
   }
 
   .habit-product {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
     gap: var(--space-lg);
     padding: var(--space-lg);
     background: var(--color-surface);
     border-radius: var(--radius-lg);
     text-align: left;
-    max-width: 480px;
+    max-width: 640px;
     margin: 0 auto;
     border: 2px solid transparent;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s var(--ease-spring);
@@ -208,13 +209,12 @@ const guidelines = [
   }
 
   .habit-product__img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    flex-shrink: 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: var(--radius-md);
-    background: var(--color-warm-yellow);
-    padding: var(--space-xs);
+    display: block;
   }
 
   .habit-product__info strong {
@@ -266,15 +266,14 @@ const guidelines = [
     }
 
     .habit-product {
-      flex-direction: column;
+      grid-template-columns: 1fr;
       text-align: center;
       padding: var(--space-md);
       gap: var(--space-md);
     }
 
     .habit-product__img {
-      width: 100px;
-      height: 100px;
+      max-width: 100%;
     }
 
     .habit-product__info strong {
